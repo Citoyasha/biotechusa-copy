@@ -62,7 +62,7 @@ function Header() {
     <header className="w-full">
       {/* Top bar - desktop only */}
       <div className="hidden lg:block bg-[#f5f5f5] border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-6 flex justify-end items-center h-9">
+        <div className="max-w-[1140px] mx-auto px-6 flex justify-end items-center h-9">
           <nav className="flex items-center gap-6">
             {topLinks.map((link) => (
               <a
@@ -79,7 +79,7 @@ function Header() {
 
       {/* Main nav bar */}
       <div className="bg-white border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 lg:px-6 flex items-center justify-between h-16 lg:h-[72px]">
+        <div className="max-w-[1140px] mx-auto px-4 lg:px-6 flex items-center justify-between h-16 lg:h-[72px]">
           {/* Mobile hamburger */}
           <button
             className="lg:hidden p-2 -ml-2 text-[#3d4f5f]"

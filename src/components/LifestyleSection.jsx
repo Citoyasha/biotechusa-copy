@@ -48,14 +48,14 @@ const categories = [
 function LifestyleSection() {
   return (
     <section className="w-full bg-white py-12 lg:py-20">
-      <div className="max-w-7xl mx-auto px-4 lg:px-6">
-        {/* Section heading */}
-        <h2 className="text-center text-2xl sm:text-3xl lg:text-[40px] lg:leading-[1.15] font-extrabold italic uppercase text-[#3d4f5f] tracking-tight mb-10 lg:mb-14">
+      <div className="max-w-[1140px] mx-auto px-4 lg:px-6">
+        {/* Section heading — matches original .title-h1 */}
+        <h1 className="text-center tracking-tight">
           BioTechUSA – Tout pour un<br className="hidden sm:block" /> mode de vie sain
-        </h2>
+        </h1>
 
-        {/* Two-column layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
+        {/* Two-column layout — original splits at xl (1200px) */}
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 lg:gap-8">
           {/* Articles panel */}
           <div className="bg-[#f3f3f3] p-6 lg:p-8">
             <h3 className="text-center text-xl lg:text-2xl font-extrabold italic uppercase text-[#3d4f5f] tracking-tight mb-6 lg:mb-8">

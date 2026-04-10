@@ -1,112 +1,242 @@
 @import "tailwindcss";
 
-:root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+/* ===================================================================
+   BioTechUSA – Global Design System
+   Extracted from the original biotechusa.fr theme
+   =================================================================== */
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
+@theme {
+  --font-heading: "Nexa", sans-serif;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  --color-primary: #3d4f5f;
+  --color-primary-dark: #2a3a47;
+  --color-heading: #36474e;
+  --color-accent: #1ea7e1;
+  --color-accent-hover: #1893c8;
+  --color-text: #6b7a8d;
+  --color-text-muted: #9aa5b1;
+  --color-bg: #ffffff;
+  --color-bg-light: #f5f5f5;
+  --color-bg-panel: #f3f3f3;
+  --color-border: #e0e0e0;
+  --color-border-light: #cdd4dc;
+  --color-footer-bg: #343a40;
+  --color-footer-text: #9aa5b1;
+  --color-footer-border: #3d4752;
+  --color-footer-icon-bg: #d6dade;
+}
 
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* ===== Base layer — Tailwind utilities CAN override these ===== */
 
-  @media (max-width: 1024px) {
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    font-family: var(--font-body);
     font-size: 16px;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
+    line-height: 1.5;
+    color: var(--color-text);
+    background-color: var(--color-bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
-  #social .button-icon {
-    filter: invert(1) brightness(2);
+  #root {
+    max-width: 100%;
+    margin: 0 auto;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
   }
-}
 
-body {
-  margin: 0;
-}
+  /* --- Typography --- */
 
-#root {
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-}
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0;
+  }
 
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
-}
+  /*
+   * h1 & h2 — main section headings
+   * Matches .title-h1 / .title-h2 from biotechusa.fr
+   * e.g. "BioTechUSA – Tout pour un mode de vie sain", "Vidéos"
+   */
+  h1,
+  h2 {
+    font-family: "Nexa", sans-serif;
+    font-size: 48px;
+    font-weight: 800;
+    font-style: italic;
+    line-height: 60px;
+    color: var(--color-heading);
+    text-transform: uppercase;
+    letter-spacing: -0.5px;
+    margin-bottom: 56px;
+  }
 
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
+  /*
+   * h3–h6 — light defaults; component Tailwind classes handle specifics
+   * so footer column headings, card titles, etc. aren't stomped.
+   */
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Nexa", sans-serif;
+    color: var(--color-heading);
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  ul,
+  ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  /* --- Responsive headings --- */
+
   @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
+    h1,
+    h2 {
+      font-size: 28px;
+      line-height: 36px;
+      margin-bottom: 32px;
+    }
   }
 }
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
+
+/* ===== Component-level utilities (higher than base, lower than Tailwind) ===== */
+
+@layer components {
+  /* Section layout */
+  .section {
+    width: 100%;
+    padding: 48px 0;
+  }
+
+  @media (min-width: 1024px) {
+    .section {
+      padding: 80px 0;
+    }
+  }
+
+  /* Outlined button — e.g. "Toutes les vidéos" */
+  .btn--outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 48px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: 2px solid var(--color-accent);
+    color: var(--color-accent);
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .btn--outline:hover {
+    background-color: var(--color-accent);
+    color: #ffffff;
+  }
+
+  /* Filled button — e.g. "Apprendre à nous connaître", newsletter CTA */
+  .btn--filled {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 48px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background-color: var(--color-accent);
+    border: 2px solid var(--color-accent);
+    color: #ffffff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .btn--filled:hover {
+    background-color: var(--color-accent-hover);
+    border-color: var(--color-accent-hover);
+  }
+
+  /* Arrow link — e.g. "Vérifiez-le →" in QuickLinks */
+  .btn--arrow {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    transition: color 0.3s ease;
+  }
+
+  .btn--arrow:hover {
+    color: var(--color-accent);
+  }
+
+  /* Category label — e.g. "ASTUCES ET COMPLEMENTS..." */
+  .category-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: var(--color-accent);
+    text-transform: uppercase;
+  }
+
+  @media (min-width: 640px) {
+    .category-label {
+      font-size: 12px;
+    }
+  }
+
+  /* Date text */
+  .date-text {
+    font-size: 11px;
+    color: var(--color-text-muted);
+  }
+
+  /* Accent bar — cyan line under QuickLinks card images */
+  .accent-bar {
+    width: 33%;
+    height: 5px;
+    background-color: var(--color-accent);
   }
 }
-p {
-  margin: 0;
-}
 
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
-}
+/* ===== Selection highlight ===== */
 
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+::selection {
+  background-color: var(--color-accent);
+  color: #ffffff;
 }

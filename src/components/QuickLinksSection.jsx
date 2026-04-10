@@ -32,8 +32,8 @@ function ChevronRight({ className = 'w-4 h-4' }) {
 function QuickLinksSection() {
   return (
     <section className="w-full bg-white py-12 lg:py-20">
-      <div className="max-w-7xl mx-auto px-4 lg:px-6">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-8">
+      <div className="max-w-[1140px] mx-auto px-4 lg:px-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">
           {items.map((item) => (
             <a
               key={item.title}

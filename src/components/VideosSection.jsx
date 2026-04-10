@@ -89,9 +89,9 @@ function VideosSection() {
 
   return (
     <section className="w-full bg-white py-12 lg:py-20">
-      <div className="max-w-7xl mx-auto px-4 lg:px-6">
+      <div className="max-w-[1140px] mx-auto px-4 lg:px-6">
         {/* Heading */}
-        <h2 className="text-center text-2xl sm:text-3xl lg:text-[40px] font-extrabold italic uppercase text-[#3d4f5f] tracking-tight mb-10 lg:mb-14">
+        <h2 className="text-center tracking-tight">
           Vidéos
         </h2>
 
