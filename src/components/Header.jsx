@@ -414,11 +414,12 @@ function Header() {
           </button>
 
           {/* Logo */}
-          <a href="#" className="flex items-center flex-shrink-0">
-            <span className="text-[#3d4f5f] text-xl lg:text-2xl font-bold italic tracking-tight">
-              BioTech<span className="font-extrabold">USA</span>
-              <sup className="text-[8px] font-normal align-super">®</sup>
-            </span>
+          <a href="/" className="flex items-center flex-shrink-0">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/c/cf/BioTechUSA_logo.png"
+              alt="BioTechUSA"
+              className="h-6 lg:h-8 w-auto"
+            />
           </a>
 
           {/* Desktop: search bar OR nav links */}
