@@ -1,0 +1,306 @@
+[
+  {
+    "id": "prod-001",
+    "contentfulId": null,
+    "name": "Iso Whey Zero poudre de protéine isolat - 25 g",
+    "price": 3.90,
+    "originalPrice": null,
+    "unitPrice": "€156,00/kg",
+    "image": {
+      "src": "https://shop.biotechusa.fr/cdn/shop/files/IWC_Catalancream_25g_sachet_600x600_919d84da-0533-4618-a996-76ef7da67f67_grande.png?v=1762786039",
+      "alt": "Iso Whey Zero 25g"
+    },
+    "category": "proteines",
+    "slug": "iso-whey-zero-25-g",
+    "inStock": true,
+    "badge": null,
+    "rating": 4.9,
+    "reviewCount": 27774,
+    "bgClass": "bg-[#e8f4fc]"
+  },
+  {
+    "id": "prod-002",
+    "contentfulId": null,
+    "name": "Iso Whey Zero poudre de protéine isolat - 908 g",
+    "price": 69.90,
+    "originalPrice": null,
+    "unitPrice": "€76,98/kg",
+    "image": {
+      "src": "https://shop.biotechusa.fr/cdn/shop/files/IWZ_white_chocolate_600x600_6636b7aa-c850-4481-bd3b-e4d5cbfc29b6_grande.png?v=1764939790",
+      "alt": "Iso Whey Zero 908g"
+    },
+    "category": "proteines",
+    "slug": "iso-whey-zero-908-g",
+    "inStock": true,
+    "badge": null,
+    "rating": 4.9,
+    "reviewCount": 27774,
+    "bgClass": "bg-[#e8f4fc]"
+  },
+  {
+    "id": "prod-003",
+    "contentfulId": null,
+    "name": "Zero Bar protéine bar - 50 g",
+    "price": 3.70,
+    "originalPrice": null,
+    "unitPrice": "€74,00/kg",
+    "image": {
+      "src": "https://shop.biotechusa.fr/cdn/shop/files/ZeroBar50g_Capuccino_600x600_270e2620-d1ea-4227-863a-7e9b7c1b3ec8_grande.png?v=1762785951",
+      "alt": "Zero Bar 50g"
+    },
+    "category": "barres",
+    "slug": "zero-bar-50-g",
+    "inStock": true,
+    "badge": null,
+    "rating": 4.9,
+    "reviewCount": 2183,
+    "bgClass": null
+  },
+  {
+    "id": "prod-004",
+    "contentfulId": null,
+    "name": "100% Creatine Monohydrate - 300 g non-aromatisé",
+    "price": 29.90,
+    "originalPrice": null,
+    "unitPrice": "€99,67/kg",
+    "image": {
+      "src": "https://shop.biotechusa.fr/cdn/shop/files/100CreatineMonohydrate_300g_unflavored_1l_600x600_051b36b1-e55e-4d35-84ad-2aa13732bc77_grande.png?v=1770751570",
+      "alt": "100% Creatine Monohydrate 300g"
+    },
+    "category": "creatines",
+    "slug": "100-creatine-monohydrate-300-g",
+    "inStock": true,
+    "badge": null,
+    "rating": 4.9,
+    "reviewCount": 4669,
+    "bgClass": "bg-[#e8f4fc]"
+  },
+  {
+    "id": "prod-005",
+    "contentfulId": null,
+    "name": "Wave Shaker - 600 ml",
+    "price": 5.90,
+    "originalPrice": null,
+    "unitPrice": "€9,83/l",
+    "image": {
+      "src": "https://shop.biotechusa.fr/cdn/shop/products/wave_05_green_500x500_3fb4f6c8-3c8f-495f-a41c-d57ff33bbf03_grande.png?v=1762785949",
+      "alt": "Wave Shaker 600ml"
+    },
+    "category": "shakers",
+    "slug": "wave-shaker-600-ml",
+    "inStock": true,
+    "badge": null,
+    "rating": 4.9,
+    "reviewCount": 2747,
+    "bgClass": null
+  },
+  {
+    "id": "prod-006",
+    "contentfulId": null,
+    "name": "BCAA ZERO poudre d'acide aminé - 360 g",
+    "price": 33.90,
+    "originalPrice": null,
+    "unitPrice": "€94,17/kg",
+    "image": {
+      "src": "https://shop.biotechusa.fr/cdn/shop/files/BCAAZero_Green_Apple_360g_1l_2000x2000_9972501c-66b0-4ea8-8601-51efb0f31080_grande.png?v=1770833831",
+      "alt": "BCAA ZERO 360g"
+    },
+    "category": "acides-amines",
+    "slug": "bcaa-zero-360-g",
+    "inStock": true,
+    "badge": null,
+    "rating": 4.9,
+    "reviewCount": 5134,
+    "bgClass": "bg-[#e8f4fc]"
+  },
+  {
+    "id": "prod-007",
+    "contentfulId": null,
+    "name": "Iso Whey Zero poudre de protéine isolat - 1816 g",
+    "price": 104.90,
+    "originalPrice": null,
+    "unitPrice": "€57,76/kg",
+    "image": {
+      "src": "https://shop.biotechusa.fr/cdn/shop/files/IWZ_pineapple_mango_600x600_1816g_grande.png?v=1764773891",
+      "alt": "Iso Whey Zero 1816g"
+    },
+    "category": "proteines",
+    "slug": "iso-whey-zero-1816-g",
+    "inStock": true,
+    "badge": null,
+    "rating": 4.9,
+    "reviewCount": 27774,
+    "bgClass": "bg-[#e8f4fc]"
+  },
+  {
+    "id": "prod-008",
+    "contentfulId": null,
+    "name": "Mega Burner - 90 capsules",
+    "price": 24.90,
+    "originalPrice": null,
+    "unitPrice": "€0,28/gélule",
+    "image": {
+      "src": "https://shop.biotechusa.fr/cdn/shop/products/MegaBurner_90caps_250ml_600x600_cb1e5a9c-94d6-4a1a-af4e-261faa756336_grande.png?v=1762785951",
+      "alt": "Mega Burner 90 capsules"
+    },
+    "category": "bruleur-de-graisse",
+    "slug": "mega-burner-90-capsules",
+    "inStock": true,
+    "badge": null,
+    "rating": 4.9,
+    "reviewCount": 1240,
+    "bgClass": "bg-[#e8f4fc]"
+  },
+  {
+    "id": "prod-009",
+    "contentfulId": null,
+    "name": "Barre protéinée Protein Bar - 70 g",
+    "price": 3.80,
+    "originalPrice": null,
+    "unitPrice": "€54,29/kg",
+    "image": {
+      "src": "https://shop.biotechusa.fr/cdn/shop/files/Protein_bar_double_choco_grande.png?v=1762785763",
+      "alt": "Protein Bar 70g"
+    },
+    "category": "barres",
+    "slug": "barre-proteinee-protein-bar-70-g",
+    "inStock": true,
+    "badge": null,
+    "rating": 4.9,
+    "reviewCount": 321,
+    "bgClass": null
+  },
+  {
+    "id": "prod-010",
+    "contentfulId": null,
+    "name": "100% Pure Whey - 2270 g",
+    "price": 89.90,
+    "originalPrice": null,
+    "unitPrice": "€39,60/kg",
+    "image": {
+      "src": "https://shop.biotechusa.fr/cdn/shop/files/100PW_Chocolate_600x600_2270g_grande.png?v=1764691150",
+      "alt": "100% Pure Whey 2270g"
+    },
+    "category": "proteines",
+    "slug": "100-pure-whey-2270-g",
+    "inStock": true,
+    "badge": null,
+    "rating": 4.9,
+    "reviewCount": 1413,
+    "bgClass": "bg-[#e8f4fc]"
+  },
+  {
+    "id": "prod-011",
+    "contentfulId": null,
+    "name": "Hyper Mass - 2270 g",
+    "price": 74.90,
+    "originalPrice": null,
+    "unitPrice": "€33,00/kg",
+    "image": {
+      "src": "https://shop.biotechusa.fr/cdn/shop/files/HyperMass_2270g_Choco_8l_600x600_34f862c9-c63c-4714-b646-f9fef30b50e3_grande.png?v=1763116905",
+      "alt": "Hyper Mass 2270g"
+    },
+    "category": "prise-de-masse",
+    "slug": "hyper-mass-2270-g",
+    "inStock": true,
+    "badge": null,
+    "rating": 4.9,
+    "reviewCount": 4140,
+    "bgClass": "bg-[#e8f4fc]"
+  },
+  {
+    "id": "prod-012",
+    "contentfulId": null,
+    "name": "Protein Power - 4000 g",
+    "price": 122.90,
+    "originalPrice": null,
+    "unitPrice": "€30,73/kg",
+    "image": {
+      "src": "https://shop.biotechusa.fr/cdn/shop/files/ProteinPower_4000g_vanilla_vodor_600x600_3e3552e9-ec54-4483-b062-a1eaef3db5c8_grande.png?v=1772159832",
+      "alt": "Protein Power 4000g"
+    },
+    "category": "proteines",
+    "slug": "protein-power-4000-g",
+    "inStock": true,
+    "badge": null,
+    "rating": 4.7,
+    "reviewCount": 5693,
+    "bgClass": "bg-[#e8f4fc]"
+  },
+  {
+    "id": "prod-013",
+    "contentfulId": null,
+    "name": "One-A-Day - 100 comprimés",
+    "price": 19.90,
+    "originalPrice": null,
+    "unitPrice": "€0,20/comprimé",
+    "image": {
+      "src": "https://shop.biotechusa.fr/cdn/shop/products/OneADay_100tbl_250ml_600x600_f947663c-7dc7-4398-bd19-5808a6ca8e71_grande.png?v=1762785761",
+      "alt": "One-A-Day 100 comprimés"
+    },
+    "category": "vitamines",
+    "slug": "one-a-day-100-comprimes",
+    "inStock": true,
+    "badge": null,
+    "rating": 5.0,
+    "reviewCount": 9057,
+    "bgClass": null
+  },
+  {
+    "id": "prod-014",
+    "contentfulId": null,
+    "name": "Hyper Mass - 4000 g",
+    "price": 106.90,
+    "originalPrice": null,
+    "unitPrice": "€26,73/kg",
+    "image": {
+      "src": "https://shop.biotechusa.fr/cdn/shop/files/HyperMass_4000g_strawberry_600x600_9df5c9f4-37d3-42f2-bef8-379cf1ccfd79_grande.png?v=1763116905",
+      "alt": "Hyper Mass 4000g"
+    },
+    "category": "prise-de-masse",
+    "slug": "hyper-mass-4000-g",
+    "inStock": true,
+    "badge": null,
+    "rating": 4.9,
+    "reviewCount": 4140,
+    "bgClass": "bg-[#e8f4fc]"
+  },
+  {
+    "id": "prod-015",
+    "contentfulId": null,
+    "name": "Mega Omega 3 - 180 capsules molles",
+    "price": 41.90,
+    "originalPrice": null,
+    "unitPrice": "€0,23/gélule",
+    "image": {
+      "src": "https://shop.biotechusa.fr/cdn/shop/products/600x600_MegaOmega3_180caps_grande.png?v=1762785763",
+      "alt": "Mega Omega 3 180 capsules"
+    },
+    "category": "vitamines",
+    "slug": "mega-omega-3-180-capsules",
+    "inStock": true,
+    "badge": null,
+    "rating": 4.9,
+    "reviewCount": 3363,
+    "bgClass": null
+  },
+  {
+    "id": "prod-016",
+    "contentfulId": null,
+    "name": "100% Creatine Monohydrate - 500 g non-aromatisé",
+    "price": 47.90,
+    "originalPrice": null,
+    "unitPrice": "€95,80/kg",
+    "image": {
+      "src": "https://shop.biotechusa.fr/cdn/shop/files/100CreatineMonohydrate_500g_600x600_f3563a7c-5e83-4bee-9767-4e36ee9a0cd4_grande.png?v=1770751570",
+      "alt": "100% Creatine Monohydrate 500g"
+    },
+    "category": "creatines",
+    "slug": "100-creatine-monohydrate-500-g",
+    "inStock": true,
+    "badge": null,
+    "rating": 4.9,
+    "reviewCount": 4669,
+    "bgClass": "bg-[#e8f4fc]"
+  }
+]

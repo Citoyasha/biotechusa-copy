@@ -1,23 +1,16 @@
-import Header from './components/Header'
-import Hero from './components/Hero'
-import LifestyleSection from './components/LifestyleSection'
-import VideosSection from './components/VideosSection'
-import AboutSection from './components/AboutSection'
-import QuickLinksSection from './components/QuickLinksSection'
-import Footer from './components/Footer'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Home from './pages/Home'
+import ShopCollections from './pages/ShopCollections'
 import './App.css'
 
 function App() {
   return (
-    <>
-      <Header />
-      <Hero />
-      <LifestyleSection />
-      <VideosSection />
-      <AboutSection />
-      <QuickLinksSection />
-      <Footer />
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/collections/all" element={<ShopCollections />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
