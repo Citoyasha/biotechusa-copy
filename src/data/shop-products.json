@@ -16,7 +16,37 @@
     "badge": null,
     "rating": 4.9,
     "reviewCount": 27774,
-    "bgClass": "bg-[#e8f4fc]"
+    "bgClass": "bg-[#e8f4fc]",
+    "shortDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "variants": [
+      { "id": "v1", "label": "Lorem chocolat", "available": true },
+      { "id": "v2", "label": "Lorem vanille", "available": true },
+      { "id": "v3", "label": "Lorem fraise", "available": false }
+    ],
+    "packaging": [
+      { "label": "25 g", "slug": "iso-whey-zero-25-g", "selected": true },
+      { "label": "908 g", "slug": "iso-whey-zero-908-g", "selected": false }
+    ],
+    "badges": [
+      { "icon": "aspartame", "label": "Sans aspartame" },
+      { "icon": "gluten", "label": "Sans gluten" },
+      { "icon": "ogm", "label": "Sans ogm" },
+      { "icon": "sugar", "label": "Faible teneur en sucre" }
+    ],
+    "description": {
+      "whyOffer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "forWhom": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      "biteAnytime": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "contents": "Lorem ipsum dolor sit amet:\n- Energie: 1544 kJ / 370 kcal\n- Lipides: 17 g\n- Glucides: 31 g\n- Protéines: 30 g\n- Sel: 0,57 g",
+      "consumption": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "ingredients": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation."
+    },
+    "faq": [
+      { "question": "Lorem ipsum dolor sit amet consectetur ?", "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." },
+      { "question": "Sed do eiusmod tempor incididunt ?", "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation." },
+      { "question": "Ut enim ad minim veniam quis nostrud ?", "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aute irure dolor in reprehenderit." },
+      { "question": "Duis aute irure dolor in reprehenderit ?", "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Excepteur sint occaecat cupidatat non proident." }
+    ]
   },
   {
     "id": "prod-002",

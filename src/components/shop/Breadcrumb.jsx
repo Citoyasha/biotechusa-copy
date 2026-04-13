@@ -11,11 +11,11 @@ function ChevronRight() {
 function Breadcrumb({ items }) {
   return (
     <nav
-      className="w-full bg-[#36474e] text-white"
+      className="w-full bg-[var(--color-heading)] text-white"
       aria-label="breadcrumbs"
     >
       <div className="max-w-[1140px] mx-auto px-4 lg:px-6 py-3">
-        <ol className="flex items-center gap-2 text-sm">
+        <ol className="flex items-center gap-2 text-sm font-bold">
           {items.map((item, index) => {
             const isLast = index === items.length - 1
             return (

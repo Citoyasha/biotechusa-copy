@@ -381,13 +381,14 @@ function Header() {
     <header className="w-full relative z-50">
       {/* Top bar - desktop only */}
       <div className="hidden lg:block bg-[#f5f5f5] border-b border-gray-200">
-        <div className="max-w-[1140px] mx-auto px-6 flex justify-end items-center h-9">
+        <div className="max-w-[1140px] mx-auto px-6 flex justify-end items-center h-8">
           <nav className="flex items-center gap-6">
             {topLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
-                className="text-xs text-[#6b7a8d] hover:text-[#3d4f5f] transition-colors"
+                className="inline-block text-[12px] font-normal leading-8 text-[#798f9c] hover:text-[#3d4f5f] transition-colors"
+                style={{ fontFamily: 'Roboto, serif' }}
               >
                 {link.label}
               </a>
@@ -418,7 +419,7 @@ function Header() {
             <img
               src="https://upload.wikimedia.org/wikipedia/commons/c/cf/BioTechUSA_logo.png"
               alt="BioTechUSA"
-              className="h-6 lg:h-8 w-auto"
+              className="h-8 lg:h-10 w-auto"
             />
           </a>
 
@@ -465,6 +466,7 @@ function Header() {
                   { label: 'PRODUITS', hasDropdown: true },
                   { label: 'VÊTEMENTS', hasDropdown: true },
                   { label: 'MAGASINS', hasDropdown: false },
+                  { label: 'PROGRAMME FIDELITÉ', hasDropdown: false },
                 ].map((item) => (
                   <div
                     key={item.label}
@@ -475,11 +477,12 @@ function Header() {
                   >
                     <a
                       href="#"
-                      className={`flex items-center gap-1 text-sm font-bold tracking-wide transition-colors h-full border-b-2 ${
+                      className={`flex items-center gap-1.5 text-[13px] font-extrabold uppercase tracking-wide transition-colors h-full border-b-2 ${
                         activeDropdown === item.label
-                          ? 'text-[#3d4f5f] border-[#1ea7e1]'
-                          : 'text-[#3d4f5f] border-transparent hover:text-[#2a3a47]'
+                          ? 'text-[#36474e] border-[#1ea7e1]'
+                          : 'text-[#36474e] border-transparent hover:text-[#2a3a47]'
                       }`}
+                      style={{ fontFamily: "'Nexa', sans-serif" }}
                     >
                       {item.label}
                       {item.hasDropdown && (
