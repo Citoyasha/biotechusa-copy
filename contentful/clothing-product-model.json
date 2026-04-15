@@ -1,0 +1,282 @@
+{
+  "contentTypes": [
+    {
+      "sys": {
+        "id": "clothingProduct",
+        "type": "ContentType"
+      },
+      "displayField": "name",
+      "name": "Clothing Product",
+      "description": "Apparel product in the BiotechUSA clothing catalog (single color variant).",
+      "fields": [
+        {
+          "id": "name",
+          "name": "Name",
+          "type": "Symbol",
+          "required": true,
+          "localized": false
+        },
+        {
+          "id": "slug",
+          "name": "Slug",
+          "type": "Symbol",
+          "required": true,
+          "localized": false,
+          "validations": [
+            { "unique": true },
+            { "regexp": { "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$", "flags": "" } }
+          ]
+        },
+        {
+          "id": "brand",
+          "name": "Brand / Collection Line",
+          "type": "Symbol",
+          "required": false,
+          "localized": false,
+          "defaultValue": { "en-US": "BiotechUSA Apparel" }
+        },
+        {
+          "id": "category",
+          "name": "Category",
+          "type": "Symbol",
+          "required": true,
+          "localized": false,
+          "validations": [
+            {
+              "in": [
+                "t-shirts-femmes",
+                "t-shirts-hommes",
+                "sweatshirts-femmes",
+                "sweatshirts-hommes",
+                "pantalons-femmes",
+                "pantalons-hommes",
+                "soutiens-gorge-de-sport",
+                "combinaisons",
+                "gants",
+                "ceintures",
+                "sacs-de-sport",
+                "chaussettes",
+                "accessoires-dentrainement",
+                "shakers"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "gender",
+          "name": "Gender",
+          "type": "Symbol",
+          "required": false,
+          "localized": false,
+          "validations": [
+            { "in": ["femme", "homme", "unisexe"] }
+          ]
+        },
+        {
+          "id": "collection",
+          "name": "Collection",
+          "type": "Symbol",
+          "required": false,
+          "localized": false,
+          "validations": [
+            { "in": ["rise", "elevate", "essence", "seamless", "core", "last-chance", "other"] }
+          ]
+        },
+        {
+          "id": "price",
+          "name": "Price (€)",
+          "type": "Number",
+          "required": true,
+          "localized": false
+        },
+        {
+          "id": "originalPrice",
+          "name": "Original Price (€, strikethrough when sale)",
+          "type": "Number",
+          "required": false,
+          "localized": false
+        },
+        {
+          "id": "image",
+          "name": "Primary Image",
+          "type": "Link",
+          "linkType": "Asset",
+          "required": true,
+          "localized": false
+        },
+        {
+          "id": "hoverImage",
+          "name": "Hover Image (swap on hover)",
+          "type": "Link",
+          "linkType": "Asset",
+          "required": false,
+          "localized": false
+        },
+        {
+          "id": "galleryImages",
+          "name": "Gallery Images",
+          "type": "Array",
+          "required": false,
+          "localized": false,
+          "items": {
+            "type": "Link",
+            "linkType": "Asset",
+            "validations": []
+          }
+        },
+        {
+          "id": "video",
+          "name": "Product Video (mp4/webm)",
+          "type": "Link",
+          "linkType": "Asset",
+          "required": false,
+          "localized": false
+        },
+        {
+          "id": "videoPoster",
+          "name": "Video Poster Frame",
+          "type": "Link",
+          "linkType": "Asset",
+          "required": false,
+          "localized": false
+        },
+        {
+          "id": "colorName",
+          "name": "Color Name (display)",
+          "type": "Symbol",
+          "required": false,
+          "localized": false
+        },
+        {
+          "id": "colorHex",
+          "name": "Color Swatch Hex",
+          "type": "Symbol",
+          "required": false,
+          "localized": false,
+          "validations": [
+            { "regexp": { "pattern": "^#[0-9a-fA-F]{6}$", "flags": "" } }
+          ]
+        },
+        {
+          "id": "colorHasBorder",
+          "name": "Color Swatch Needs Border (for light colors)",
+          "type": "Boolean",
+          "required": false,
+          "localized": false,
+          "defaultValue": { "en-US": false }
+        },
+        {
+          "id": "linkedVariants",
+          "name": "Sibling Color Variants",
+          "type": "Array",
+          "required": false,
+          "localized": false,
+          "items": {
+            "type": "Link",
+            "linkType": "Entry",
+            "validations": [
+              { "linkContentType": ["clothingProduct"] }
+            ]
+          }
+        },
+        {
+          "id": "sizes",
+          "name": "Sizes",
+          "type": "Object",
+          "required": false,
+          "localized": false
+        },
+        {
+          "id": "sizeChartKey",
+          "name": "Size Chart Reference Key",
+          "type": "Symbol",
+          "required": false,
+          "localized": false,
+          "validations": [
+            { "in": ["homme", "femme", "unisexe", "chaussettes"] }
+          ]
+        },
+        {
+          "id": "badges",
+          "name": "Product Badges",
+          "type": "Object",
+          "required": false,
+          "localized": false
+        },
+        {
+          "id": "inStock",
+          "name": "In Stock",
+          "type": "Boolean",
+          "required": false,
+          "localized": false,
+          "defaultValue": { "en-US": true }
+        },
+        {
+          "id": "rating",
+          "name": "Rating",
+          "type": "Number",
+          "required": false,
+          "localized": false,
+          "validations": [{ "range": { "min": 0, "max": 5 } }]
+        },
+        {
+          "id": "reviewCount",
+          "name": "Review Count",
+          "type": "Integer",
+          "required": false,
+          "localized": false,
+          "validations": [{ "range": { "min": 0 } }]
+        },
+        {
+          "id": "shortDescription",
+          "name": "Short Description",
+          "type": "Text",
+          "required": false,
+          "localized": false
+        },
+        {
+          "id": "descriptionHtml",
+          "name": "Full Product Description (HTML)",
+          "type": "Text",
+          "required": false,
+          "localized": false
+        },
+        {
+          "id": "materialComposition",
+          "name": "Material Composition",
+          "type": "Symbol",
+          "required": false,
+          "localized": false
+        },
+        {
+          "id": "washingInstructions",
+          "name": "Washing Instructions",
+          "type": "Object",
+          "required": false,
+          "localized": false
+        },
+        {
+          "id": "uspMetrics",
+          "name": "USP Metrics (breathability, fit, weight, …)",
+          "type": "Object",
+          "required": false,
+          "localized": false
+        },
+        {
+          "id": "modelInfo",
+          "name": "Model Info (height, worn size)",
+          "type": "Symbol",
+          "required": false,
+          "localized": false
+        },
+        {
+          "id": "bgClass",
+          "name": "Background CSS Class",
+          "type": "Symbol",
+          "required": false,
+          "localized": false
+        }
+      ]
+    }
+  ]
+}

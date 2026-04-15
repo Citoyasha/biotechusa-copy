@@ -4,9 +4,13 @@ const SPACE_ID = import.meta.env.VITE_CONTENTFUL_SPACE_ID
 const TOKEN = import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN
 const CONTENT_TYPE = 'shopProduct'
 
-const client = SPACE_ID && TOKEN
+export const client = SPACE_ID && TOKEN
   ? createClient({ space: SPACE_ID, accessToken: TOKEN })
   : null
+
+export function mapAsset(asset, alt) {
+  return mapImage(asset, alt)
+}
 
 function mapImage(asset, alt) {
   if (!asset?.fields?.file?.url) return { src: '', alt: alt || '' }
@@ -22,6 +26,7 @@ function mapEntryToProduct(entry) {
   return {
     id: entry.sys.id,
     contentfulId: entry.sys.id,
+    createdAt: entry.sys.createdAt || null,
     name: f.name || '',
     slug: f.slug,
     price: Number(f.price) || 0,

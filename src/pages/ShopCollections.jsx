@@ -1,18 +1,46 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { fetchProducts } from '../data/fetchProducts'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import Breadcrumb from '../components/shop/Breadcrumb'
 import FilterBar from '../components/shop/FilterBar'
+import FilterDrawer from '../components/shop/FilterDrawer'
 import ProductGrid from '../components/shop/ProductGrid'
 import Pagination from '../components/shop/Pagination'
 
 const PRODUCTS_PER_PAGE = 16
 
+function applySort(list, sort) {
+  const copy = [...list]
+  switch (sort) {
+    case 'topSales':
+      return copy.sort((a, b) => (b.reviewCount || 0) - (a.reviewCount || 0))
+    case 'popularity':
+      return copy.sort((a, b) => (b.rating || 0) - (a.rating || 0))
+    case 'az':
+      return copy.sort((a, b) => (a.name || '').localeCompare(b.name || '', 'fr'))
+    case 'za':
+      return copy.sort((a, b) => (b.name || '').localeCompare(a.name || '', 'fr'))
+    case 'priceAsc':
+      return copy.sort((a, b) => (a.price || 0) - (b.price || 0))
+    case 'priceDesc':
+      return copy.sort((a, b) => (b.price || 0) - (a.price || 0))
+    case 'dateDesc':
+      return copy.sort((a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0))
+    case 'dateAsc':
+      return copy.sort((a, b) => new Date(a.createdAt || 0) - new Date(b.createdAt || 0))
+    default:
+      return copy
+  }
+}
+
 function ShopCollections() {
   const [products, setProducts] = useState([])
   const [currentPage, setCurrentPage] = useState(1)
   const [loading, setLoading] = useState(true)
+  const [drawerOpen, setDrawerOpen] = useState(false)
+  const [sort, setSort] = useState('default')
+  const [selectedCategories, setSelectedCategories] = useState([])
 
   useEffect(() => {
     fetchProducts().then((data) => {
@@ -21,8 +49,15 @@ function ShopCollections() {
     })
   }, [])
 
-  const totalPages = Math.ceil(products.length / PRODUCTS_PER_PAGE)
-  const paginatedProducts = products.slice(
+  const filteredProducts = useMemo(() => {
+    const filtered = selectedCategories.length
+      ? products.filter((p) => selectedCategories.includes(p.category))
+      : products
+    return applySort(filtered, sort)
+  }, [products, selectedCategories, sort])
+
+  const totalPages = Math.ceil(filteredProducts.length / PRODUCTS_PER_PAGE)
+  const paginatedProducts = filteredProducts.slice(
     (currentPage - 1) * PRODUCTS_PER_PAGE,
     currentPage * PRODUCTS_PER_PAGE
   )
@@ -30,6 +65,12 @@ function ShopCollections() {
   const handlePageChange = (page) => {
     setCurrentPage(page)
     window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
+  const handleApplyFilters = ({ sort: nextSort, categories }) => {
+    setSort(nextSort)
+    setSelectedCategories(categories)
+    setCurrentPage(1)
   }
 
   return (
@@ -54,8 +95,8 @@ function ShopCollections() {
 
           {/* Filter bar */}
           <FilterBar
-            totalResults={products.length}
-            onFilterClick={() => {}}
+            totalResults={filteredProducts.length}
+            onFilterClick={() => setDrawerOpen(true)}
           />
 
           {/* Product grid */}
@@ -77,6 +118,16 @@ function ShopCollections() {
       </main>
 
       <Footer />
+
+      {drawerOpen && (
+        <FilterDrawer
+          onClose={() => setDrawerOpen(false)}
+          products={products}
+          initialSort={sort}
+          initialCategories={selectedCategories}
+          onApply={handleApplyFilters}
+        />
+      )}
     </>
   )
 }
