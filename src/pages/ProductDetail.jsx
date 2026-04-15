@@ -61,16 +61,20 @@ function withDefaults(product) {
 
 function ProductDetail() {
   const { slug } = useParams()
-  const [product, setProduct] = useState(null)
-  const [loading, setLoading] = useState(true)
+  const [data, setData] = useState({ slug: null, product: null })
 
   useEffect(() => {
-    setLoading(true)
+    let cancelled = false
     fetchProductBySlug(slug).then((p) => {
-      setProduct(p)
-      setLoading(false)
+      if (!cancelled) setData({ slug, product: p })
     })
+    return () => {
+      cancelled = true
+    }
   }, [slug])
+
+  const loading = data.slug !== slug
+  const product = loading ? null : data.product
 
   if (loading) {
     return (

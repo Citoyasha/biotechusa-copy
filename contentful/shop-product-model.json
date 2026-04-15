@@ -1,0 +1,205 @@
+{
+  "contentTypes": [
+    {
+      "sys": {
+        "id": "shopProduct",
+        "type": "ContentType"
+      },
+      "displayField": "name",
+      "name": "Shop Product",
+      "description": "Product in the shop catalog (BiotechUSA)",
+      "fields": [
+        {
+          "id": "name",
+          "name": "Name",
+          "type": "Symbol",
+          "required": true,
+          "localized": false
+        },
+        {
+          "id": "slug",
+          "name": "Slug",
+          "type": "Symbol",
+          "required": true,
+          "localized": false,
+          "validations": [
+            { "unique": true },
+            { "regexp": { "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$", "flags": "" } }
+          ]
+        },
+        {
+          "id": "price",
+          "name": "Price",
+          "type": "Number",
+          "required": true,
+          "localized": false
+        },
+        {
+          "id": "originalPrice",
+          "name": "Original Price",
+          "type": "Number",
+          "required": false,
+          "localized": false
+        },
+        {
+          "id": "unitPrice",
+          "name": "Unit Price",
+          "type": "Symbol",
+          "required": false,
+          "localized": false
+        },
+        {
+          "id": "image",
+          "name": "Image",
+          "type": "Link",
+          "linkType": "Asset",
+          "required": false,
+          "localized": false
+        },
+        {
+          "id": "imageAlt",
+          "name": "Image Alt Text",
+          "type": "Symbol",
+          "required": false,
+          "localized": false
+        },
+        {
+          "id": "category",
+          "name": "Category",
+          "type": "Symbol",
+          "required": true,
+          "localized": false,
+          "validations": [
+            {
+              "in": [
+                "proteines",
+                "barres",
+                "creatines",
+                "shakers",
+                "acides-amines",
+                "bruleur-de-graisse",
+                "prise-de-masse",
+                "vitamines"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "inStock",
+          "name": "In Stock",
+          "type": "Boolean",
+          "required": false,
+          "localized": false,
+          "defaultValue": { "en-US": true }
+        },
+        {
+          "id": "badge",
+          "name": "Badge",
+          "type": "Symbol",
+          "required": false,
+          "localized": false
+        },
+        {
+          "id": "rating",
+          "name": "Rating",
+          "type": "Number",
+          "required": false,
+          "localized": false,
+          "validations": [{ "range": { "min": 0, "max": 5 } }]
+        },
+        {
+          "id": "reviewCount",
+          "name": "Review Count",
+          "type": "Integer",
+          "required": false,
+          "localized": false,
+          "validations": [{ "range": { "min": 0 } }]
+        },
+        {
+          "id": "bgClass",
+          "name": "Background CSS Class",
+          "type": "Symbol",
+          "required": false,
+          "localized": false
+        },
+        {
+          "id": "shortDescription",
+          "name": "Short Description",
+          "type": "Text",
+          "required": false,
+          "localized": false
+        },
+        {
+          "id": "variants",
+          "name": "Variants",
+          "type": "Object",
+          "required": false,
+          "localized": false
+        },
+        {
+          "id": "packaging",
+          "name": "Packaging Options",
+          "type": "Object",
+          "required": false,
+          "localized": false
+        },
+        {
+          "id": "badges",
+          "name": "Product Badges",
+          "type": "Object",
+          "required": false,
+          "localized": false
+        },
+        {
+          "id": "descWhyOffer",
+          "name": "Why We Offer It",
+          "type": "Text",
+          "required": false,
+          "localized": false
+        },
+        {
+          "id": "descForWhom",
+          "name": "For Whom",
+          "type": "Text",
+          "required": false,
+          "localized": false
+        },
+        {
+          "id": "descBiteAnytime",
+          "name": "Bite Anytime",
+          "type": "Text",
+          "required": false,
+          "localized": false
+        },
+        {
+          "id": "descContents",
+          "name": "Nutritional Contents",
+          "type": "Text",
+          "required": false,
+          "localized": false
+        },
+        {
+          "id": "descConsumption",
+          "name": "Consumption",
+          "type": "Text",
+          "required": false,
+          "localized": false
+        },
+        {
+          "id": "descIngredients",
+          "name": "Ingredients",
+          "type": "Text",
+          "required": false,
+          "localized": false
+        },
+        {
+          "id": "faq",
+          "name": "FAQ",
+          "type": "Object",
+          "required": false,
+          "localized": false
+        }
+      ]
+    }
+  ]
+}
