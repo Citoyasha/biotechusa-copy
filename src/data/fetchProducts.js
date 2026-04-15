@@ -1,5 +1,4 @@
 import { createClient } from 'contentful'
-import productsData from './shop-products.json'
 
 const SPACE_ID = import.meta.env.VITE_CONTENTFUL_SPACE_ID
 const TOKEN = import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN
@@ -52,7 +51,10 @@ function mapEntryToProduct(entry) {
 }
 
 export async function fetchProducts() {
-  if (!client) return productsData
+  if (!client) {
+    console.error('Contentful client not configured: missing VITE_CONTENTFUL_SPACE_ID or VITE_CONTENTFUL_ACCESS_TOKEN')
+    return []
+  }
   try {
     const res = await client.getEntries({
       content_type: CONTENT_TYPE,
@@ -61,25 +63,26 @@ export async function fetchProducts() {
     })
     return res.items.map(mapEntryToProduct)
   } catch (err) {
-    console.warn('Contentful fetchProducts failed, using local fallback:', err)
-    return productsData
+    console.error('Contentful fetchProducts failed:', err)
+    return []
   }
 }
 
 export async function fetchProductBySlug(slug) {
-  if (client) {
-    try {
-      const res = await client.getEntries({
-        content_type: CONTENT_TYPE,
-        'fields.slug': slug,
-        include: 2,
-        limit: 1,
-      })
-      if (res.items[0]) return mapEntryToProduct(res.items[0])
-    } catch (err) {
-      console.warn('Contentful fetchProductBySlug failed, falling back:', err)
-    }
+  if (!client) {
+    console.error('Contentful client not configured: missing VITE_CONTENTFUL_SPACE_ID or VITE_CONTENTFUL_ACCESS_TOKEN')
+    return null
   }
-  const products = await fetchProducts()
-  return products.find((p) => p.slug === slug) || null
+  try {
+    const res = await client.getEntries({
+      content_type: CONTENT_TYPE,
+      'fields.slug': slug,
+      include: 2,
+      limit: 1,
+    })
+    return res.items[0] ? mapEntryToProduct(res.items[0]) : null
+  } catch (err) {
+    console.error('Contentful fetchProductBySlug failed:', err)
+    return null
+  }
 }
