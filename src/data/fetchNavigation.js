@@ -108,6 +108,32 @@ export function buildProduitsMenu(categories) {
   }))
 }
 
+export async function fetchProductBreadcrumb(product) {
+  if (!product) return null
+
+  if (product.collection) {
+    const collections = await fetchClothingCollections()
+    const match = collections.find(
+      (c) => c.filterType === 'collection' && c.filterValue === product.collection,
+    )
+    if (match) return { label: match.name, href: `/collections/${match.slug}` }
+  }
+
+  if (product.category) {
+    const collections = await fetchClothingCollections()
+    const clothingMatch = collections.find(
+      (c) => c.filterType === 'category' && c.filterValue === product.category,
+    )
+    if (clothingMatch) return { label: clothingMatch.name, href: `/collections/${clothingMatch.slug}` }
+
+    const categories = await fetchProductCategories()
+    const catMatch = categories.find((c) => c.slug === product.category)
+    if (catMatch) return { label: catMatch.name, href: `/collections/${catMatch.slug}` }
+  }
+
+  return null
+}
+
 export async function fetchCollectionConfig(slug) {
   const collections = await fetchClothingCollections()
   const match = collections.find((c) => c.slug === slug)
@@ -122,7 +148,11 @@ export async function fetchCollectionConfig(slug) {
   const categories = await fetchProductCategories()
   const catMatch = categories.find((c) => c.slug === slug)
   if (catMatch) {
-    return { title: catMatch.name, filterType: null, filterValue: null }
+    return {
+      title: catMatch.name,
+      filterType: 'productCategory',
+      filterValue: catMatch.slug,
+    }
   }
 
   return null

@@ -152,7 +152,7 @@ function ScrollRow({ children, gap = 16, scrollRef }) {
 function ShopProductCard({ product }) {
   return (
     <a href={`/products/${product.handle}`} className="snap-start flex-shrink-0 w-[180px] sm:w-[200px] lg:w-[16.5%] group block">
-      <div className="relative bg-[#eff1f1] overflow-hidden">
+      <div className="relative bg-[#eff1f1] overflow-hidden rounded-xl">
         {product.isNew && (
           <span className="absolute top-2.5 left-2.5 bg-[#00adef] text-white text-[10px] font-bold uppercase px-3 py-[3px] leading-[18px] z-10" style={{ fontFamily: "'Nexa', sans-serif" }}>Nouveau</span>
         )}

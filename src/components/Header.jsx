@@ -391,7 +391,7 @@ function Header() {
                       )}
                     </a>
                   </div>
-                ))}F
+                ))}
               </nav>
 
               {/* Spacer */}
@@ -525,10 +525,10 @@ function Header() {
                     <SearchIcon className="w-5 h-5" />
                     SEARCH
                   </button>
-                  <a href="/compte" className="flex items-center gap-3 px-6 py-3 text-sm font-medium text-[#3d4f5f] hover:bg-gray-50">
+                 {/* <a href="/compte" className="flex items-center gap-3 px-6 py-3 text-sm font-medium text-[#3d4f5f] hover:bg-gray-50">
                     <ProfileIcon className="w-5 h-5" />
                     PROFILE
-                  </a>
+                  </a>*/}
                   {/*<a href="/panier" className="flex items-center gap-3 px-6 py-3 text-sm font-medium text-[#3d4f5f] hover:bg-gray-50">
                     <CartIcon className="w-5 h-5" />
                     CART

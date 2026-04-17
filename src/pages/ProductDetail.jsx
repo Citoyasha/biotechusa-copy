@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { fetchProductBySlug } from '../data/fetchProducts'
+import { fetchProductBreadcrumb } from '../data/fetchNavigation'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import Breadcrumb from '../components/shop/Breadcrumb'
@@ -8,6 +9,7 @@ import ProductGallery from '../components/shop/product/ProductGallery'
 import ProductInfo from '../components/shop/product/ProductInfo'
 import ProductDescriptionAccordion from '../components/shop/product/ProductDescriptionAccordion'
 import ProductFAQ from '../components/shop/product/ProductFAQ'
+import ClothingProductDetail from './ClothingProductDetail'
 
 const LOREM_SHORT = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
 
@@ -61,12 +63,13 @@ function withDefaults(product) {
 
 function ProductDetail() {
   const { slug } = useParams()
-  const [data, setData] = useState({ slug: null, product: null })
+  const [data, setData] = useState({ slug: null, product: null, crumb: null })
 
   useEffect(() => {
     let cancelled = false
-    fetchProductBySlug(slug).then((p) => {
-      if (!cancelled) setData({ slug, product: p })
+    fetchProductBySlug(slug).then(async (p) => {
+      const crumb = p ? await fetchProductBreadcrumb(p) : null
+      if (!cancelled) setData({ slug, product: p, crumb })
     })
     return () => {
       cancelled = true
@@ -75,6 +78,7 @@ function ProductDetail() {
 
   const loading = data.slug !== slug
   const product = loading ? null : data.product
+  const crumb = loading ? null : data.crumb
 
   if (loading) {
     return (
@@ -103,6 +107,10 @@ function ProductDetail() {
     )
   }
 
+  if (product.type === 'clothing') {
+    return <ClothingProductDetail product={product} crumb={crumb} />
+  }
+
   const p = withDefaults(product)
 
   return (
@@ -111,7 +119,7 @@ function ProductDetail() {
       <Breadcrumb
         items={[
           { label: 'Accueil', href: '/' },
-          { label: 'Tous les produits', href: '/collections/all' },
+          crumb || { label: 'Tous les produits', href: '/collections/all' },
           { label: p.name },
         ]}
       />

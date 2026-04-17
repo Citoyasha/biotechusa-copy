@@ -1,8 +1,9 @@
 import { useState, useEffect, useCallback } from 'react'
 import { useParams } from 'react-router-dom'
-import { fetchClothingProducts } from '../data/fetchProducts'
+import { fetchClothingProducts, fetchProducts } from '../data/fetchProducts'
 import { fetchCollectionConfig } from '../data/fetchNavigation'
 import ShopCollections from './ShopCollections'
+import ClothingCollectionLayout from './ClothingCollectionLayout'
 
 const emptyFetch = () => Promise.resolve([])
 
@@ -22,6 +23,8 @@ export default function CollectionPage() {
     fetchCollectionConfig(collectionSlug).then((c) => setConfig(c || null))
   }, [collectionSlug])
 
+  const isClothing = config?.filterType === 'collection' || config?.filterType === 'category'
+
   const fetchFn = useCallback(() => {
     if (!config) return emptyFetch()
     if (config.filterType === 'collection') {
@@ -30,11 +33,26 @@ export default function CollectionPage() {
     if (config.filterType === 'category') {
       return fetchClothingProducts({ category: config.filterValue })
     }
+    if (config.filterType === 'productCategory') {
+      return fetchProducts({ category: config.filterValue })
+    }
     return emptyFetch()
   }, [config])
 
   const title = config?.title || slugToTitle(collectionSlug)
 
+  // Clothing collections get the clothing layout
+  if (isClothing) {
+    return (
+      <ClothingCollectionLayout
+        title={title}
+        fetchFn={fetchFn}
+        breadcrumbHref={`/collections/${collectionSlug}`}
+      />
+    )
+  }
+
+  // Supplement / unknown collections get the shop layout
   return (
     <ShopCollections
       fetchFn={fetchFn}

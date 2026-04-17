@@ -3,16 +3,7 @@ import { Link } from 'react-router-dom'
 import StarRating from '../StarRating'
 import BadgeIcon from './BadgeIcon'
 
-function HeartIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className="w-5 h-5">
-      <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
-    </svg>
-  )
-}
-
 function ProductInfo({ product }) {
-  const [qty, setQty] = useState(1)
   const [variantId, setVariantId] = useState(product.variants?.[0]?.id || '')
 
   const formatPrice = (n) => `€${n.toFixed(2).replace('.', ',')}`
@@ -106,62 +97,6 @@ function ProductInfo({ product }) {
           </select>
         </div>
       )}
-
-      {/* Loyalty points (placeholder) */}
-      <div className="bg-[#f5f5f5] p-4 rounded">
-        <div className="text-xs text-[#6b7a8d] mb-1">Points pouvant être gagnés par produit</div>
-        <div className="text-base font-bold text-[#36474e]">3 point(s)</div>
-      </div>
-
-      {/* Quantity + Add to cart */}
-      <div className="flex gap-2">
-        <div className="flex items-center border-2 border-[#eff1f1]">
-          <button
-            onClick={() => setQty(Math.max(1, qty - 1))}
-            className="w-10 h-12 text-xl text-[#36474e] hover:bg-[#f5f5f5]"
-            aria-label="Diminuer"
-          >
-            −
-          </button>
-          <input
-            type="number"
-            value={qty}
-            onChange={(e) => setQty(Math.max(1, Number(e.target.value) || 1))}
-            min="1"
-            className="w-12 h-12 text-center text-[#36474e] outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-          />
-          <button
-            onClick={() => setQty(qty + 1)}
-            className="w-10 h-12 text-xl text-[#36474e] hover:bg-[#f5f5f5]"
-            aria-label="Augmenter"
-          >
-            +
-          </button>
-        </div>
-        <button className="flex-1 h-12 bg-[#1ea7e1] hover:bg-[#1893c8] text-white font-bold text-sm uppercase tracking-wider transition-colors">
-          Ajouter au panier
-        </button>
-        <button
-          className="w-12 h-12 border-2 border-[#eff1f1] text-[#36474e] hover:border-[#1ea7e1] hover:text-[#1ea7e1] flex items-center justify-center transition-colors"
-          aria-label="Ajouter aux favoris"
-        >
-          <HeartIcon />
-        </button>
-      </div>
-
-      {/* Free shipping bar (placeholder) */}
-      <div className="bg-[#f5f5f5] p-4 rounded text-sm">
-        <div className="font-bold text-[#36474e] mb-1">Économisez sur la livraison !</div>
-        <div className="text-[#6b7a8d]">
-          Si vous dépensez au moins <strong>€80,00</strong>, nous expédierons votre colis gratuitement !
-        </div>
-        <div className="mt-2 h-1 bg-[#dadada] rounded overflow-hidden">
-          <div
-            className="h-full bg-[#1ea7e1]"
-            style={{ width: `${Math.min(100, (product.price / 80) * 100)}%` }}
-          />
-        </div>
-      </div>
 
       {/* Stock status */}
       <div className="text-sm text-[#6b7a8d]">

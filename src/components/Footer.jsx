@@ -99,7 +99,7 @@ function Footer() {
   }
 
   return (
-    <footer className="w-full bg-[#282828] text-[#9aa5b1]">
+    <footer className="w-full bg-[#282828] text-[#9aa5b1] mt-[100px]">
       <div className="max-w-[1140px] mx-auto px-6 lg:px-8 pt-16 lg:pt-20 pb-8">
         {/* Newsletter */}
         <div className="text-center">

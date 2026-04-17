@@ -101,7 +101,7 @@ function ProductCard({ product, onVariantChange }) {
       onMouseLeave={handleMouseLeave}
     >
       {/* Media box */}
-      <div className={`relative aspect-[5/6] overflow-hidden ${bgClass || 'bg-[#eff1f1]'}`}>
+      <div className={`relative aspect-[5/6] overflow-hidden rounded-xl ${bgClass || 'bg-[#eff1f1]'}`}>
         <a href={href} className="block w-full h-full">
           {video?.src ? (
             <video

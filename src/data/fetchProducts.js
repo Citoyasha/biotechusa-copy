@@ -26,6 +26,7 @@ function mapEntryToProduct(entry) {
   return {
     id: entry.sys.id,
     contentfulId: entry.sys.id,
+    type: 'shop',
     createdAt: entry.sys.createdAt || null,
     name: f.name || '',
     slug: f.slug,
@@ -55,17 +56,19 @@ function mapEntryToProduct(entry) {
   }
 }
 
-export async function fetchProducts() {
+export async function fetchProducts(filters = {}) {
   if (!client) {
     console.error('Contentful client not configured: missing VITE_CONTENTFUL_SPACE_ID or VITE_CONTENTFUL_ACCESS_TOKEN')
     return []
   }
   try {
-    const res = await client.getEntries({
+    const query = {
       content_type: CONTENT_TYPE,
       include: 2,
       limit: 1000,
-    })
+    }
+    if (filters.category) query['fields.category'] = filters.category
+    const res = await client.getEntries(query)
     return res.items.map(mapEntryToProduct)
   } catch (err) {
     console.error('Contentful fetchProducts failed:', err)
@@ -95,11 +98,23 @@ export async function fetchClothingProducts(filters = {}) {
   }
 }
 
+function mapLinkedVariant(ref) {
+  const rf = ref?.fields
+  if (!rf?.slug) return null
+  return {
+    slug: rf.slug,
+    colorName: rf.colorName || null,
+    colorHex: rf.colorHex || null,
+    colorHasBorder: !!rf.colorHasBorder,
+  }
+}
+
 function mapClothingEntryToProduct(entry) {
   const f = entry.fields || {}
   return {
     id: entry.sys.id,
     contentfulId: entry.sys.id,
+    type: 'clothing',
     createdAt: entry.sys.createdAt || null,
     name: f.name || '',
     slug: f.slug,
@@ -107,17 +122,39 @@ function mapClothingEntryToProduct(entry) {
     originalPrice: f.originalPrice != null ? Number(f.originalPrice) : null,
     image: mapImage(f.image, f.name),
     hoverImage: f.hoverImage ? mapImage(f.hoverImage, f.name) : null,
+    galleryImages: Array.isArray(f.galleryImages)
+      ? f.galleryImages.map((img) => mapImage(img, f.name)).filter((x) => x.src)
+      : [],
+    video: f.video?.fields?.file?.url
+      ? {
+          src: f.video.fields.file.url.startsWith('//')
+            ? `https:${f.video.fields.file.url}`
+            : f.video.fields.file.url,
+          contentType: f.video.fields.file.contentType || 'video/mp4',
+        }
+      : null,
+    videoPoster: f.videoPoster ? mapImage(f.videoPoster, f.name) : null,
+    linkedVariants: Array.isArray(f.linkedVariants)
+      ? f.linkedVariants.map(mapLinkedVariant).filter(Boolean)
+      : [],
     category: f.category || '',
     collection: f.collection || null,
     gender: f.gender || null,
     colorName: f.colorName || null,
     colorHex: f.colorHex || null,
+    colorHasBorder: !!f.colorHasBorder,
     inStock: f.inStock ?? true,
     rating: Number(f.rating) || 0,
     reviewCount: Number(f.reviewCount) || 0,
     bgClass: f.bgClass || null,
     shortDescription: f.shortDescription || null,
+    descriptionHtml: f.descriptionHtml || null,
+    materialComposition: f.materialComposition || null,
+    washingInstructions: f.washingInstructions || null,
+    uspMetrics: f.uspMetrics || null,
+    modelInfo: f.modelInfo || null,
     sizes: f.sizes || null,
+    sizeChartKey: f.sizeChartKey || null,
     badges: f.badges || null,
     brand: f.brand || 'BiotechUSA Apparel',
   }
