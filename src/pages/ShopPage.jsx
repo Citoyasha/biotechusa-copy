@@ -241,6 +241,99 @@ function ProductsTabsSection({ tabs, activeTab, setActiveTab, activeProducts }) 
   )
 }
 
+/* ───── articles data + section ───── */
+
+const articleTabs = [
+  'Les plus récents', 'Populaire', 'Actualités', 'Astuces et compléments alimentaires',
+  'Mode de vie', "Plans d'entraînement", 'Recettes', 'Régimes alimentaires',
+]
+
+const blogArticles = [
+  {
+    category: 'ASTUCES ET COMPLÉMENTS ALIMENTAIRES',
+    title: 'Curcumine : bienfaits, utilisation et précautions',
+    image: 'https://biotechusa.fr/content/smush-webp/2026/03/BioTechUSA-cover-1400x390-293-768x214.png.webp',
+    href: '/blog/curcumine-bienfaits',
+  },
+  {
+    category: 'ASTUCES ET COMPLÉMENTS ALIMENTAIRES',
+    title: 'Par quoi remplacer la whey : alternatives pour vos protéines',
+    image: 'https://biotechusa.fr/content/smush-webp/2026/03/BioTechUSA-cover-1400x390-288-768x214.png.webp',
+    href: '/blog/remplacer-whey',
+  },
+  {
+    category: 'ASTUCES ET COMPLÉMENTS ALIMENTAIRES',
+    title: 'Quand prendre la whey pour une prise de masse efficace : le guide complet',
+    image: 'https://biotechusa.fr/content/smush-webp/2026/03/BioTechUSA-cover-1400x390-287-768x214.png.webp',
+    href: '/blog/quand-prendre-whey',
+  },
+]
+
+function ArticlesSection() {
+  const [activeArticleTab, setActiveArticleTab] = useState(0)
+
+  return (
+    <section className="w-full bg-white py-10 lg:py-14">
+      <div className="w-[95%] mx-auto">
+        <h4 className="text-left text-[16px] font-medium text-[#36474e] mb-5" style={{ fontFamily: 'Roboto, sans-serif' }}>
+          Nos articles
+        </h4>
+
+        {/* Tabs */}
+        <div className="flex gap-2 mb-8 overflow-x-auto pb-1">
+          {articleTabs.map((tab, i) => (
+            <button
+              key={tab}
+              onClick={() => setActiveArticleTab(i)}
+              className={`whitespace-nowrap px-4 py-1.5 text-[11px] font-extrabold uppercase tracking-[0.06em] rounded-full transition-colors ${
+                activeArticleTab === i
+                  ? 'bg-[#36474e] text-white'
+                  : 'bg-white text-[#798f9c] border border-[#d6dade] hover:border-[#36474e] hover:text-[#36474e]'
+              }`}
+              style={{ fontFamily: "'Nexa', sans-serif" }}
+            >
+              {tab}
+            </button>
+          ))}
+        </div>
+
+        {/* Article cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {blogArticles.map((article) => (
+            <a key={article.title} href={article.href} className="group block">
+              <div className="aspect-[16/9] overflow-hidden rounded-xl bg-[#eff1f1]">
+                <img
+                  src={article.image}
+                  alt={article.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                />
+              </div>
+              <div className="mt-3">
+                <p className="text-[10px] font-bold text-[#798f9c] uppercase tracking-wide">{article.category}</p>
+                <p className="text-[14px] font-bold text-[#36474e] leading-snug mt-1 group-hover:text-[#1babf9] transition-colors line-clamp-2" style={{ fontFamily: 'Roboto, sans-serif' }}>
+                  {article.title}
+                </p>
+              </div>
+            </a>
+          ))}
+        </div>
+
+        {/* CTA */}
+        <div className="flex justify-center mt-10">
+          <a
+            href="/blog"
+            className="px-8 py-2.5 border border-[#36474e] text-[#36474e] text-[11px] font-bold uppercase tracking-widest rounded-full hover:bg-[#36474e] hover:text-white transition-colors"
+            style={{ fontFamily: "'Nexa', sans-serif" }}
+          >
+            Plus d'articles
+          </a>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 /* ================================================================
    MAIN PAGE
    ================================================================ */
@@ -379,12 +472,14 @@ export default function ShopPage() {
         </div>
       </section>
 
-      {/* ── ATHLETES (white bg, cards overlap visually) ── */}
-      <section className="w-full bg-white py-10 lg:py-14">
-        <div className="w-[95%] mx-auto">
+      {/* ── ATHLETES (black bg that ends partway into cards) ── */}
+      <section className="w-full relative">
+        {/* Black background covers title area + top ~40% of card area */}
+        <div className="absolute inset-x-0 top-0 bg-black" style={{ height: '85%' }} />
+        <div className="relative w-[95%] mx-auto pt-8 pb-10 lg:pb-14">
           <div className="text-center mb-6">
-            <h3 className="text-[20px] font-bold text-[#36474e]" style={{ fontFamily: 'Roboto, sans-serif' }}>Nos athletes</h3>
-            <p className="text-[13px] text-[#6b7a8d] mt-1">Nous inspirons des performances de haut niveau dans le monde entier</p>
+            <h3 className="text-[20px] font-bold text-white" style={{ fontFamily: 'Roboto, sans-serif' }}>Nos athletes</h3>
+            <p className="text-[13px] text-white/50 mt-1">Nous inspirons des performances de haut niveau dans le monde entier</p>
           </div>
           <ScrollRow gap={12}>
             {athletes.map((a) => (
@@ -401,34 +496,52 @@ export default function ShopPage() {
               </div>
             ))}
           </ScrollRow>
-          <ProgressBar total={athletes.length} visible={4} current={0} onChange={() => {}} />
         </div>
       </section>
 
-      {/* ── FOOTER DESCRIPTION ── */}
-      <section className="w-full bg-white py-10 lg:py-14">
+      {/* ── ARTICLES SECTION ── */}
+      <ArticlesSection />
+
+      {/* ── ABOUT / FOOTER DESCRIPTION (dark) ── */}
+      <section className="w-full bg-black py-12 lg:py-16">
         <div className="w-[95%] mx-auto">
-          <h4 className="text-left text-[16px] font-medium text-[#36474e] mb-8" style={{ fontFamily: 'Roboto, sans-serif' }}>
+          <h4 className="text-left text-[16px] font-medium text-white mb-6" style={{ fontFamily: 'Roboto, sans-serif' }}>
             C'est BioTechUSA
           </h4>
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 text-[14px] text-[#6b7a8d] leading-relaxed">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr_1.2fr] gap-8">
+            {/* Left col — text + thumbnails */}
             <div>
-              <p>
-                Les produits BioTechUSA sont concus pour t'aider a depasser les limites de tes performances et te soutenir dans l'adoption d'un mode de vie sain. Peu importe que tu ailles t'entrainer apres de longues heures au bureau, que la musculation professionnelle soit ton metier ou que ton objectif soit de preserver ta sante : avec nos complements alimentaires developpes en interne, tu peux passer au niveau superieur.
+              <p className="text-[13px] text-white/50 leading-relaxed">
+                Les produits BioTechUSA sont conçus pour t'aider à dépasser les limites de tes performances et te soutenir dans l'adoption d'un mode de vie sain. Peu importe que tu ailles t'entraîner après de longues heures au bureau, que la musculation professionnelle soit ton métier ou que ton objectif soit de préserver ta santé : avec nos compléments alimentaires développés en interne, tu peux passer au niveau supérieur.
               </p>
-              <div className="flex gap-2 mt-4">
-                {['footer_05', 'footer_02', 'footer_04', 'footer_03'].map((n) => (
-                  <img key={n} src={`https://shop.biotechusa.fr/cdn/shop/files/Megujult_fooldal_grafikai_anyagok_${n}_80x80_*.jpg`} alt="" className="w-[60px] h-[60px] object-cover rounded" loading="lazy"
-                    onError={(e) => { e.target.style.display = 'none' }}
-                  />
+              <div className="flex gap-2 mt-5">
+                {[
+                  'https://shop.biotechusa.fr/cdn/shop/files/Megujult_fooldal_grafikai_anyagok_footer_05_80x80_b40c3413-e734-421f-9265-3b7f0f593751.jpg?v=1773236186',
+                  'https://shop.biotechusa.fr/cdn/shop/files/Megujult_fooldal_grafikai_anyagok_footer_02_80x80_016aabb7-1f80-4f70-8c7f-9e16ecf9daaa.jpg?v=1773236187',
+                  'https://shop.biotechusa.fr/cdn/shop/files/Megujult_fooldal_grafikai_anyagok_footer_04_80x80_7ecf158f-8698-4120-b8f4-c75172e78278.jpg?v=1773236186',
+                  'https://shop.biotechusa.fr/cdn/shop/files/Megujult_fooldal_grafikai_anyagok_footer_03_80x80_0fee0ae9-8634-46e6-8922-d0f3ce00c9b0.jpg?v=1773236186',
+                ].map((src, i) => (
+                  <img key={i} src={src} alt="" className="w-[60px] h-[60px] rounded-lg object-cover" loading="lazy" />
                 ))}
               </div>
             </div>
-            <p>
-              Nous ne nous contentons pas de resultats moyens : grace a des recherches et des developpements continus, nous creons de nouvelles gammes de produits afin de rendre les complements d'un mode de vie sain facilement accessibles a tous. C'est ainsi qu'ont vu le jour des variantes sans lactose et sans gluten, ainsi que notre gamme vegane composee exclusivement d'ingredients d'origine vegetale.
+
+            {/* Middle col — text */}
+            <p className="text-[13px] text-white/50 leading-relaxed">
+              Nous ne nous contentons pas de résultats moyens : grâce à des recherches et des développements continus, nous créons de nouvelles gammes de produits afin de rendre les compléments d'un mode de vie sain facilement accessibles à tous. C'est ainsi qu'ont vu le jour des variantes sans lactose et sans gluten, qui offrent une alternative adaptée aux personnes sensibles, ainsi que notre gamme végane composée exclusivement d'ingrédients d'origine végétale.
             </p>
-            <div className="aspect-video">
-              <iframe className="w-full h-full" src="https://www.youtube.com/embed/ZS7r8Scrogw" title="BioTechUSA" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen loading="lazy" />
+
+            {/* Right col — YouTube */}
+            <div className="aspect-video rounded-xl overflow-hidden">
+              <iframe
+                className="w-full h-full"
+                src="https://www.youtube.com/embed/ZS7r8Scrogw"
+                title="Taste the quality, feel the results | BioTechUSA"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                loading="lazy"
+              />
             </div>
           </div>
         </div>
