@@ -112,7 +112,7 @@ function ProductDetail() {
         items={[
           { label: 'Accueil', href: '/' },
           { label: 'Tous les produits', href: '/collections/all' },
-          { label: p.name, href: '#' },
+          { label: p.name },
         ]}
       />
 

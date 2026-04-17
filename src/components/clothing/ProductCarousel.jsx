@@ -20,7 +20,7 @@ function ProductCarousel({
   title,
   products = [],
   ctaLabel = 'tout',
-  ctaHref = '#',
+  ctaHref = '/vetements',
   showArrows = false,
   variant = 'rise',
 }) {

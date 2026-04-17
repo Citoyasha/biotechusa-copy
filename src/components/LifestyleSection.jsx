@@ -4,21 +4,21 @@ const articles = [
     title: 'Curcumine : bienfaits, utilisation et précautions',
     date: '2026.03.27',
     image: 'https://biotechusa.fr/content/smush-webp/2026/03/BioTechUSA-cover-1400x390-293-768x214.png.webp',
-    href: '#',
+    href: '/blog/curcumine-bienfaits',
   },
   {
     category: 'ASTUCES ET COMPLEMENTS...',
     title: 'Par quoi remplacer la whey : alternatives pour vos protéines',
     date: '2026.03.14',
     image: 'https://biotechusa.fr/content/smush-webp/2026/03/BioTechUSA-cover-1400x390-288-768x214.png.webp',
-    href: '#',
+    href: '/blog/remplacer-whey',
   },
   {
     category: 'ASTUCES ET COMPLEMENTS...',
     title: 'Quand prendre la whey pour une prise de masse efficace : le guide complet',
     date: '2026.03.14',
     image: 'https://biotechusa.fr/content/smush-webp/2026/03/BioTechUSA-cover-1400x390-287-768x214.png.webp',
-    href: '#',
+    href: '/blog/quand-prendre-whey',
   },
 ]
 
@@ -26,22 +26,22 @@ const categories = [
   {
     label: 'ACTUALITÉS',
     image: 'https://biotechusa.fr/content/uploads/2022/03/category-1.webp',
-    href: '#',
+    href: '/blog',
   },
   {
     label: "PLANS D'ENTRAÎNEMENT",
     image: 'https://biotechusa.fr/content/uploads/2022/03/category-2-min.webp',
-    href: '#',
+    href: '/blog/entrainement',
   },
   {
     label: 'RÉGIMES ALIMENTAIRES',
     image: 'https://biotechusa.fr/content/uploads/2022/03/category-3-min.webp',
-    href: '#',
+    href: '/blog/regimes',
   },
   {
     label: 'LOCALISATEUR DE MAGASIN',
     image: 'https://biotechusa.fr/content/uploads/2022/03/category-4-min.webp',
-    href: '#',
+    href: '/magasins',
   },
 ]
 

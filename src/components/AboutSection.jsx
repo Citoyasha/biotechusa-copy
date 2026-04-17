@@ -63,7 +63,7 @@ function AboutSection() {
         {/* CTA button */}
         <div className="mt-12 sm:mt-14 lg:mt-16 flex justify-center px-5">
           <a
-            href="#"
+            href="/a-propos"
             className="inline-flex items-center justify-center px-8 sm:px-12 py-4 bg-[#1ea7e1] hover:bg-[#1893c8] text-white text-sm font-bold tracking-wider uppercase transition-colors w-full sm:w-auto sm:min-w-[340px]"
           >
             Apprendre a nous connaitre

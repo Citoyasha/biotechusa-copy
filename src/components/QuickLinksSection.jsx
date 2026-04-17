@@ -2,22 +2,22 @@ const items = [
   {
     title: 'À propos de nous',
     image: 'https://biotechusa.fr/content/uploads/2022/03/about-us_small.webp',
-    href: '#',
+    href: '/a-propos',
   },
   {
     title: 'Boutique en ligne',
     image: 'https://biotechusa.fr/content/uploads/2022/03/Products.jpg',
-    href: '#',
+    href: '/collections/all',
   },
   {
     title: 'Contact',
     image: 'https://biotechusa.fr/content/uploads/2022/03/kapcsolat_background.webp',
-    href: '#',
+    href: '/contact',
   },
   {
     title: 'Localisateur de magasin',
     image: 'https://biotechusa.fr/content/uploads/2022/11/store_background.webp',
-    href: '#',
+    href: '/magasins',
   },
 ]
 

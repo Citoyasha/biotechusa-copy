@@ -4,29 +4,29 @@ const linkColumns = [
   {
     title: 'Boutique en ligne',
     links: [
-      { label: 'Vente', href: '#' },
-      { label: 'Le plus populaire', href: '#' },
-      { label: 'Nouveaux produits', href: '#' },
-      { label: 'Tous les produits', href: '#' },
+      { label: 'Vente', href: '/collections/sante' },
+      { label: 'Le plus populaire', href: '/collections/all' },
+      { label: 'Nouveaux produits', href: '/collections/all' },
+      { label: 'Tous les produits', href: '/collections/all' },
     ],
   },
   {
     title: "Besoin d'aide",
     links: [
-      { label: 'Contact', href: '#' },
-      { label: 'Devenez Notre Partenaire', href: '#' },
-      { label: 'Distributeurs', href: '#' },
+      { label: 'Contact', href: '/contact' },
+      { label: 'Devenez Notre Partenaire', href: '/partenaire' },
+      { label: 'Distributeurs', href: '/distributeurs' },
     ],
   },
   {
     title: 'Information',
     links: [
-      { label: 'À propos de nous', href: '#' },
-      { label: 'Blog', href: '#' },
-      { label: 'Carrière', href: '#' },
-      { label: 'Lifestyle', href: '#' },
-      { label: 'Programme Fidélité', href: '#' },
-      { label: 'Impressum', href: '#' },
+      { label: 'À propos de nous', href: '/a-propos' },
+      { label: 'Blog', href: '/blog' },
+      { label: 'Carrière', href: '/carriere' },
+      { label: 'Lifestyle', href: '/blog' },
+      { label: 'Programme Fidélité', href: '/programme-fidelite' },
+      { label: 'Impressum', href: '/impressum' },
     ],
   },
 ]
@@ -82,13 +82,13 @@ function ChevronDown({ className = 'w-4 h-4' }) {
 }
 
 const socialLinks = [
-  { label: 'Facebook', href: '#', Icon: FacebookIcon },
-  { label: 'Instagram', href: '#', Icon: InstagramIcon },
-  { label: 'YouTube', href: '#', Icon: YoutubeIcon },
-  { label: 'Twitter', href: '#', Icon: TwitterIcon },
-  { label: 'Spotify', href: '#', Icon: SpotifyIcon },
-  { label: 'LinkedIn', href: '#', Icon: LinkedInIcon },
-  { label: 'TikTok', href: '#', Icon: TikTokIcon },
+  { label: 'Facebook', href: 'https://www.facebook.com/biotechusa.fr', Icon: FacebookIcon },
+  { label: 'Instagram', href: 'https://www.instagram.com/biotechusa_fr/', Icon: InstagramIcon },
+  { label: 'YouTube', href: 'https://www.youtube.com/@BioTechUSAFrance', Icon: YoutubeIcon },
+  { label: 'Twitter', href: 'https://twitter.com/biotechusaint', Icon: TwitterIcon },
+  { label: 'Spotify', href: 'https://open.spotify.com/user/31kmuqkjjqxqu6pxpr6r5zbox2cy', Icon: SpotifyIcon },
+  { label: 'LinkedIn', href: 'https://hu.linkedin.com/company/biotechusa', Icon: LinkedInIcon },
+  { label: 'TikTok', href: 'https://www.tiktok.com/@biotechusa_official', Icon: TikTokIcon },
 ]
 
 function Footer() {
@@ -112,7 +112,7 @@ function Footer() {
           </p>
           <div className="mt-6 flex justify-center">
             <a
-              href="#"
+              href="/newsletter"
               className="inline-flex items-center justify-center px-12 sm:px-16 py-4 bg-[#1ea7e1] hover:bg-[#1893c8] text-white text-[15px] font-bold tracking-widest uppercase transition-colors w-full sm:w-auto sm:min-w-[280px]"
             >
               S'inscrire
@@ -148,7 +148,7 @@ function Footer() {
               Magasins
             </h3>
             <a
-              href="#"
+              href="/magasins"
               className="inline-flex items-center justify-center whitespace-nowrap px-8 py-3.5 border border-[#1ea7e1] text-white text-sm font-bold tracking-wider uppercase hover:bg-white hover:text-[#343a40] transition-colors"
             >
               Magasin le plus proche
@@ -209,7 +209,7 @@ function Footer() {
             {openSection === 'Magasins' && (
               <div className="pb-5">
                 <a
-                  href="#"
+                  href="/magasins"
                   className="inline-flex items-center justify-center whitespace-nowrap px-8 py-3.5 border border-[#1ea7e1] text-white text-sm font-bold tracking-wider uppercase hover:bg-white hover:text-[#343a40] transition-colors"
                 >
                   Magasin le plus proche
@@ -225,6 +225,8 @@ function Footer() {
             <a
               key={label}
               href={href}
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label={label}
               className="flex items-center justify-center w-12 h-12 rounded-full bg-[#d6dade] text-[#343a40] hover:bg-white transition-colors"
             >
@@ -236,15 +238,15 @@ function Footer() {
         {/* Bottom bar */}
         <div className="mt-10 lg:mt-12 pt-6 border-t border-[#4a545e] flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-[#9aa5b1]">
           <p className="text-center sm:text-left">
-            <a href="#" className="hover:text-white transition-colors">
+            <a href="/politique-confidentialite" className="hover:text-white transition-colors">
               Politique de confidentialité
             </a>{' '}
             <span>et</span>{' '}
-            <a href="#" className="hover:text-white transition-colors">
+            <a href="/politique-cookies" className="hover:text-white transition-colors">
               de cookies
             </a>
           </p>
-          <a href="#" className="hover:text-white transition-colors">
+          <a href="/conditions-generales" className="hover:text-white transition-colors">
             Termes et conditions
           </a>
         </div>

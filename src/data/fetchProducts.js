@@ -73,19 +73,79 @@ export async function fetchProducts() {
   }
 }
 
+export async function fetchClothingProducts(filters = {}) {
+  if (!client) {
+    console.error('Contentful client not configured')
+    return []
+  }
+  try {
+    const query = {
+      content_type: 'clothingProduct',
+      include: 2,
+      limit: 1000,
+    }
+    if (filters.collection) query['fields.collection'] = filters.collection
+    if (filters.category) query['fields.category'] = filters.category
+    if (filters.gender) query['fields.gender'] = filters.gender
+    const res = await client.getEntries(query)
+    return res.items.map(mapClothingEntryToProduct)
+  } catch (err) {
+    console.error('Contentful fetchClothingProducts failed:', err)
+    return []
+  }
+}
+
+function mapClothingEntryToProduct(entry) {
+  const f = entry.fields || {}
+  return {
+    id: entry.sys.id,
+    contentfulId: entry.sys.id,
+    createdAt: entry.sys.createdAt || null,
+    name: f.name || '',
+    slug: f.slug,
+    price: Number(f.price) || 0,
+    originalPrice: f.originalPrice != null ? Number(f.originalPrice) : null,
+    image: mapImage(f.image, f.name),
+    hoverImage: f.hoverImage ? mapImage(f.hoverImage, f.name) : null,
+    category: f.category || '',
+    collection: f.collection || null,
+    gender: f.gender || null,
+    colorName: f.colorName || null,
+    colorHex: f.colorHex || null,
+    inStock: f.inStock ?? true,
+    rating: Number(f.rating) || 0,
+    reviewCount: Number(f.reviewCount) || 0,
+    bgClass: f.bgClass || null,
+    shortDescription: f.shortDescription || null,
+    sizes: f.sizes || null,
+    badges: f.badges || null,
+    brand: f.brand || 'BiotechUSA Apparel',
+  }
+}
+
 export async function fetchProductBySlug(slug) {
   if (!client) {
     console.error('Contentful client not configured: missing VITE_CONTENTFUL_SPACE_ID or VITE_CONTENTFUL_ACCESS_TOKEN')
     return null
   }
   try {
-    const res = await client.getEntries({
+    const shopRes = await client.getEntries({
       content_type: CONTENT_TYPE,
       'fields.slug': slug,
       include: 2,
       limit: 1,
     })
-    return res.items[0] ? mapEntryToProduct(res.items[0]) : null
+    if (shopRes.items[0]) return mapEntryToProduct(shopRes.items[0])
+
+    const clothingRes = await client.getEntries({
+      content_type: 'clothingProduct',
+      'fields.slug': slug,
+      include: 2,
+      limit: 1,
+    })
+    if (clothingRes.items[0]) return mapClothingEntryToProduct(clothingRes.items[0])
+
+    return null
   } catch (err) {
     console.error('Contentful fetchProductBySlug failed:', err)
     return null

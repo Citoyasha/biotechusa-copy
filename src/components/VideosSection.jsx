@@ -155,7 +155,9 @@ function VideosSection() {
         {/* CTA button */}
         <div className="mt-10 lg:mt-14 flex justify-center">
           <a
-            href="#"
+            href="https://www.youtube.com/@BioTechUSAFrance"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center justify-center px-10 sm:px-16 py-3.5 sm:py-4 border-2 border-[#1ea7e1] text-[#1ea7e1] text-sm font-bold tracking-wider uppercase hover:bg-[#1ea7e1] hover:text-white transition-colors w-full sm:w-auto max-w-md"
           >
             Toutes les vidéos

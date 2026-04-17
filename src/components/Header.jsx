@@ -1,128 +1,20 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import {
+  fetchClothingCollections,
+  fetchProductCategories,
+  buildVetementsMenu,
+  buildProduitsMenu,
+} from '../data/fetchNavigation'
 
 const topLinks = [
-  { label: 'Blog', href: '#' },
-  { label: 'Programme Fidelité', href: '#' },
-  { label: 'À propos de nous', href: '#' },
-  { label: 'Carrière', href: '#' },
-  { label: 'Ambassador program', href: '#' },
-  { label: 'Contact', href: '#' },
+  { label: 'Blog', href: '/blog' },
+  //{ label: 'Programme Fidelité', href: '/programme-fidelite' },
+  { label: 'À propos de nous', href: '/a-propos' },
+  //{ label: 'Carrière', href: '/carriere' },
+  //{ label: 'Ambassador program', href: '/ambassador' },
+  { label: 'Contact', href: '/contact' },
 ]
 
-const produitsMenu = [
-  {
-    title: 'Vitalité quotidienne',
-    links: [
-      { label: 'Protéines', href: '#' },
-      { label: 'Vitamines, mineraux', href: '#' },
-      { label: 'Produits de collagène', href: '#' },
-      { label: 'Beauty line', href: '#' },
-      { label: 'Soutien articulaire', href: '#' },
-      { label: 'Calculateur de vitamines', href: '#', highlight: true },
-    ],
-  },
-  {
-    title: 'Sculpture corporelle',
-    links: [
-      { label: 'Formules de contrôle du poids', href: '#' },
-      { label: 'Acides aminés', href: '#' },
-      { label: 'Fibres alimentaires', href: '#' },
-      { label: 'Extraits végétaux naturels', href: '#' },
-    ],
-  },
-  {
-    title: 'Vitalité et performance',
-    links: [
-      { label: 'Vitamines issues de sources naturelles', href: '#' },
-      { label: "Pour les sports d'endurance", href: '#' },
-      { label: 'Créatines', href: '#' },
-      { label: 'Gainers', href: '#' },
-      { label: 'Énergie et performance', href: '#' },
-      { label: 'Optimisez votre taux de testostérone', href: '#' },
-    ],
-  },
-  {
-    title: 'Nourriture et snack',
-    links: [
-      { label: 'Poudres de base pour cuisiner et pâtisser', href: '#' },
-      { label: 'Barres', href: '#' },
-      { label: 'Crèmes protéinées et snacks', href: '#' },
-      { label: 'Édulcorants', href: '#' },
-    ],
-  },
-  {
-    title: 'Produits en promotion',
-    links: [
-      { label: 'Produits en promotion actuels', href: '#' },
-      { label: 'Doublez et économisez!', href: '#' },
-      { label: 'Offres groupées', href: '#' },
-    ],
-  },
-]
-
-const vetementsMenu = [
-  {
-    heading: 'FEMME',
-    href: '#',
-    subcols: [
-      {
-        title: 'PRODUITS',
-        links: [
-          { label: 'T-shirts, débardeurs', href: '#' },
-          { label: 'Pulls', href: '#' },
-          { label: 'Soutien-gorge de sport', href: '#' },
-          { label: 'Leggings, pantalons', href: '#' },
-        ],
-      },
-      {
-        title: 'OFFRES',
-        links: [
-          { label: 'Nouveautés', href: '#' },
-          { label: 'Seamless', href: '#' },
-          { label: 'LAST CHANCE', href: '#' },
-          { label: 'Voir tout', href: '#', bold: true },
-        ],
-      },
-    ],
-  },
-  {
-    heading: 'HOMME',
-    href: '#',
-    subcols: [
-      {
-        title: 'PRODUITS',
-        links: [
-          { label: 'T-shirts, débardeurs', href: '#' },
-          { label: 'Pulls', href: '#' },
-          { label: 'Pantalons', href: '#' },
-        ],
-      },
-      {
-        title: 'OFFRES',
-        links: [
-          { label: 'Nouveautés', href: '#' },
-          { label: 'LAST CHANCE', href: '#' },
-          { label: 'Voir tout', href: '#', bold: true },
-        ],
-      },
-    ],
-  },
-  {
-    heading: 'ACCESSOIRES',
-    href: '#',
-    subcols: [
-      {
-        title: 'PRODUITS',
-        links: [
-          { label: 'Gants', href: '#' },
-          { label: 'Ceintures', href: '#' },
-          { label: "Accessoires d'entraînement", href: '#' },
-          { label: 'Shakers, bols', href: '#' },
-        ],
-      },
-    ],
-  },
-]
 
 function SearchIcon({ className = 'w-5 h-5' }) {
   return (
@@ -132,21 +24,21 @@ function SearchIcon({ className = 'w-5 h-5' }) {
   )
 }
 
-function ProfileIcon({ className = 'w-5 h-5' }) {
+/*function ProfileIcon({ className = 'w-5 h-5' }) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className}>
       <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
     </svg>
   )
-}
+}*/
 
-function CartIcon({ className = 'w-5 h-5' }) {
+/*function CartIcon({ className = 'w-5 h-5' }) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className}>
       <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
     </svg>
   )
-}
+}*/
 
 function ChevronDown({ className = 'w-3.5 h-3.5' }) {
   return (
@@ -181,11 +73,11 @@ function ChevronRight({ className = 'w-4 h-4' }) {
 }
 
 /* ---- Produits Dropdown ---- */
-function ProduitsDropdown() {
+function ProduitsDropdown({ menu }) {
   return (
     <div className="max-w-[1140px] mx-auto px-6 py-8">
       <div className="grid grid-cols-5 gap-6">
-        {produitsMenu.map((col) => (
+        {menu.map((col) => (
           <div key={col.title}>
             <h4 className="text-[#3d4f5f] text-sm font-bold italic mb-4">
               {col.title}
@@ -214,11 +106,11 @@ function ProduitsDropdown() {
 }
 
 /* ---- Vêtements Dropdown ---- */
-function VetementsDropdown() {
+function VetementsDropdown({ menu }) {
   return (
     <div className="max-w-[1140px] mx-auto px-6 py-8">
       <div className="grid grid-cols-3 gap-10">
-        {vetementsMenu.map((section) => (
+        {menu.map((section) => (
           <div key={section.heading}>
             <a
               href={section.href}
@@ -263,25 +155,25 @@ const recentArticles = [
     category: 'ASTUCES ET COMPLÉMENTS...',
     title: 'Curcumine : bienfaits, utilisation et précautions',
     image: 'https://biotechusa.fr/content/uploads/2026/03/BioTechUSA-cover-1400x390-293-150x150.png',
-    href: '#',
+    href: '/blog/curcumine-bienfaits',
   },
   {
     category: 'ASTUCES ET COMPLÉMENTS...',
     title: 'Par quoi remplacer la whey : alternatives pour vos...',
     image: 'https://biotechusa.fr/content/uploads/2026/03/BioTechUSA-cover-1400x390-288-150x150.png',
-    href: '#',
+    href: '/blog/remplacer-whey',
   },
   {
     category: 'ASTUCES ET COMPLÉMENTS...',
     title: 'Quand prendre la whey pour une prise de masse efficace ...',
     image: 'https://biotechusa.fr/content/uploads/2026/03/BioTechUSA-cover-1400x390-287-150x150.png',
-    href: '#',
+    href: '/blog/quand-prendre-whey',
   },
   {
     category: 'MODE DE VIE',
     title: 'Comment couper la faim rapidement, naturellement ...',
     image: 'https://biotechusa.fr/content/uploads/2026/03/BioTechUSA-cover-1400x390-283-150x150.png',
-    href: '#',
+    href: '/blog/couper-la-faim',
   },
 ]
 
@@ -366,8 +258,15 @@ function Header() {
   const [searchOpen, setSearchOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
   const [mobileSearchOpen, setMobileSearchOpen] = useState(false)
-  const [mobileMenuLevel, setMobileMenuLevel] = useState('main') // 'main' | 'produits' | 'vetements' | subcategory key
-  const [mobileSubLevel, setMobileSubLevel] = useState(null) // for 3rd level drill-down
+  const [mobileMenuLevel, setMobileMenuLevel] = useState('main')
+  const [mobileSubLevel, setMobileSubLevel] = useState(null)
+  const [produitsMenu, setProduitsMenu] = useState([])
+  const [vetementsMenu, setVetementsMenu] = useState([])
+
+  useEffect(() => {
+    fetchProductCategories().then((cats) => setProduitsMenu(buildProduitsMenu(cats)))
+    fetchClothingCollections().then((cols) => setVetementsMenu(buildVetementsMenu(cols)))
+  }, [])
 
   const handleMouseEnter = (label) => {
     setActiveDropdown(label)
@@ -463,10 +362,10 @@ function Header() {
               {/* Desktop nav links */}
               <nav className="hidden lg:flex items-center gap-8 ml-10 h-full">
                 {[
-                  { label: 'PRODUITS', hasDropdown: true },
-                  { label: 'VÊTEMENTS', hasDropdown: true },
-                  { label: 'MAGASINS', hasDropdown: false },
-                  { label: 'PROGRAMME FIDELITÉ', hasDropdown: false },
+                  { label: 'PRODUITS', hasDropdown: true, href: '/shop' },
+                  { label: 'VÊTEMENTS', hasDropdown: true, href: '/vetements' },
+                  { label: 'MAGASINS', hasDropdown: false, href: '/magasins' },
+                  {/* { label: 'PROGRAMME FIDELITÉ', hasDropdown: false, href: '/programme-fidelite' }, */}
                 ].map((item) => (
                   <div
                     key={item.label}
@@ -476,7 +375,7 @@ function Header() {
                     }
                   >
                     <a
-                      href="#"
+                      href={item.href || '#'}
                       className={`flex items-center gap-1.5 text-[13px] font-extrabold uppercase tracking-wide transition-colors h-full border-b-2 ${
                         activeDropdown === item.label
                           ? 'text-[#36474e] border-[#1ea7e1]'
@@ -492,7 +391,7 @@ function Header() {
                       )}
                     </a>
                   </div>
-                ))}
+                ))}F
               </nav>
 
               {/* Spacer */}
@@ -507,12 +406,12 @@ function Header() {
                 >
                   <SearchIcon className="w-[22px] h-[22px]" />
                 </button>
-                <button aria-label="Profile" className="hover:text-[#2a3a47] transition-colors">
+                {/*<button aria-label="Profile" className="hover:text-[#2a3a47] transition-colors">
                   <ProfileIcon className="w-[22px] h-[22px]" />
-                </button>
-                <button aria-label="Cart" className="hover:text-[#2a3a47] transition-colors">
+                </button>*/}
+                {/* <button aria-label="Cart" className="hover:text-[#2a3a47] transition-colors">
                   <CartIcon className="w-[22px] h-[22px]" />
-                </button>
+                </button>*/}
               </div>
             </>
           )}
@@ -533,8 +432,8 @@ function Header() {
         {/* Desktop dropdown panels — absolute overlay */}
         {activeDropdown && !searchOpen && (
           <div className="hidden lg:block absolute top-full left-0 right-0 bg-white border-t border-gray-100 shadow-md z-40">
-            {activeDropdown === 'PRODUITS' && <ProduitsDropdown />}
-            {activeDropdown === 'VÊTEMENTS' && <VetementsDropdown />}
+            {activeDropdown === 'PRODUITS' && <ProduitsDropdown menu={produitsMenu} />}
+            {activeDropdown === 'VÊTEMENTS' && <VetementsDropdown menu={vetementsMenu} />}
           </div>
         )}
 
@@ -614,7 +513,7 @@ function Header() {
                     <ChevronRight />
                   </button>
                   <a
-                    href="#"
+                    href="/magasins"
                     className="flex items-center justify-between px-6 py-4 text-sm font-bold text-[#3d4f5f] tracking-wide hover:bg-gray-50"
                   >
                     MAGASINS
@@ -622,18 +521,18 @@ function Header() {
                 </nav>
 
                 <div className="border-b border-gray-200 py-2">
-                  <a href="#" className="flex items-center gap-3 px-6 py-3 text-sm font-medium text-[#3d4f5f] hover:bg-gray-50">
+                  <button onClick={() => { setMobileMenuOpen(false); setMobileSearchOpen(true) }} className="w-full flex items-center gap-3 px-6 py-3 text-sm font-medium text-[#3d4f5f] hover:bg-gray-50">
                     <SearchIcon className="w-5 h-5" />
                     SEARCH
-                  </a>
-                  <a href="#" className="flex items-center gap-3 px-6 py-3 text-sm font-medium text-[#3d4f5f] hover:bg-gray-50">
+                  </button>
+                  <a href="/compte" className="flex items-center gap-3 px-6 py-3 text-sm font-medium text-[#3d4f5f] hover:bg-gray-50">
                     <ProfileIcon className="w-5 h-5" />
                     PROFILE
                   </a>
-                  <a href="#" className="flex items-center gap-3 px-6 py-3 text-sm font-medium text-[#3d4f5f] hover:bg-gray-50">
+                  {/*<a href="/panier" className="flex items-center gap-3 px-6 py-3 text-sm font-medium text-[#3d4f5f] hover:bg-gray-50">
                     <CartIcon className="w-5 h-5" />
                     CART
-                  </a>
+                  </a>*/}
                 </div>
 
                 <nav className="py-2">
@@ -665,7 +564,7 @@ function Header() {
                 </div>
 
                 <div className="py-2">
-                  <a href="#" className="block px-6 py-4 text-sm font-bold text-[#3d4f5f] hover:bg-gray-50">
+                  <a href="/collections/all" className="block px-6 py-4 text-sm font-bold text-[#3d4f5f] hover:bg-gray-50">
                     Accueil du Webshop
                   </a>
                   {produitsMenu.map((cat) => (
@@ -733,7 +632,7 @@ function Header() {
                 </div>
 
                 <div className="py-2">
-                  <a href="#" className="block px-6 py-4 text-sm font-bold text-[#3d4f5f] hover:bg-gray-50">
+                  <a href="/collections/all" className="block px-6 py-4 text-sm font-bold text-[#3d4f5f] hover:bg-gray-50">
                     Accueil du Webshop
                   </a>
                   {vetementsMenu.map((section) => (

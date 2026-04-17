@@ -34,7 +34,7 @@ function applySort(list, sort) {
   }
 }
 
-function ShopCollections() {
+function ShopCollections({ fetchFn = fetchProducts, title = 'Tous les produits', breadcrumbLabel = 'Tous les produits', breadcrumbHref = '/collections/all' }) {
   const [products, setProducts] = useState([])
   const [currentPage, setCurrentPage] = useState(1)
   const [loading, setLoading] = useState(true)
@@ -43,11 +43,11 @@ function ShopCollections() {
   const [selectedCategories, setSelectedCategories] = useState([])
 
   useEffect(() => {
-    fetchProducts().then((data) => {
+    fetchFn().then((data) => {
       setProducts(data)
       setLoading(false)
     })
-  }, [])
+  }, [fetchFn])
 
   const filteredProducts = useMemo(() => {
     const filtered = selectedCategories.length
@@ -81,7 +81,7 @@ function ShopCollections() {
       <Breadcrumb
         items={[
           { label: 'Accueil', href: '/' },
-          { label: 'Tous les produits', href: '/collections/all' },
+          { label: breadcrumbLabel, href: breadcrumbHref },
         ]}
       />
 
@@ -90,7 +90,7 @@ function ShopCollections() {
         <div className="max-w-[1140px] mx-auto px-4 lg:px-6">
           {/* Collection title */}
           <h2 className="text-center pt-12 pb-0 mb-8 not-italic" style={{ fontFamily: 'Roboto, sans-serif', fontWeight: 700, fontSize: '28px', lineHeight: '36px', textTransform: 'none' }}>
-            Tous les produits
+            {title}
           </h2>
 
           {/* Filter bar */}

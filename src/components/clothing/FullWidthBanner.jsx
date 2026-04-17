@@ -1,4 +1,4 @@
-function FullWidthBanner({ imageDesktop, imageMobile, href = '#', alt = '' }) {
+function FullWidthBanner({ imageDesktop, imageMobile, href = '/vetements', alt = '' }) {
   if (!imageDesktop && !imageMobile) return null
   return (
     <section className="w-full my-10 lg:my-16">

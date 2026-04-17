@@ -1,4 +1,4 @@
-function EssenceBanner({ title, text, ctaLabel = 'acheter', ctaHref = '#' }) {
+function EssenceBanner({ title, text, ctaLabel = 'acheter', ctaHref = '/collections/essence-collection' }) {
   return (
     <section className="w-[90vw] max-w-[1600px] mx-auto py-16 lg:py-24 text-center">
       <h2

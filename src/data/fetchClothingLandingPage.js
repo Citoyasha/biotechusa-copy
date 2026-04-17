@@ -62,7 +62,7 @@ function mapElevateCards(raw) {
     title: c.title || '',
     image: c.image || '',
     ctaLabel: c.ctaLabel || 'montrez-moi!',
-    href: c.href || '#',
+    href: c.href || '/vetements',
   }))
 }
 
@@ -74,7 +74,7 @@ function mapHeroSlides(raw) {
     title: s.title || '',
     subtitle: s.subtitle || '',
     ctaLabel: s.ctaLabel || '',
-    ctaHref: s.ctaHref || '#',
+    ctaHref: s.ctaHref || '/vetements',
     align: s.align || 'left',
   }))
 }
@@ -121,7 +121,7 @@ export async function fetchClothingLandingPage() {
         title: f.riseTitle || 'RISE collection',
         products: resolve(riseRefs),
         ctaLabel: f.riseCtaLabel || 'tout',
-        ctaHref: f.riseCtaHref || '#',
+        ctaHref: f.riseCtaHref || '/collections/rise-collection',
       },
       leisure: {
         imageDesktop: f.leisureBannerImage ? mapAsset(f.leisureBannerImage).src : '',
@@ -130,13 +130,13 @@ export async function fetchClothingLandingPage() {
           : f.leisureBannerImage
             ? mapAsset(f.leisureBannerImage).src
             : '',
-        href: f.leisureBannerHref || '#',
+        href: f.leisureBannerHref || '/vetements',
       },
       lastChance: {
         title: f.lastChanceTitle || 'LAST CHANCE',
         products: resolve(lastChanceRefs),
         ctaLabel: f.lastChanceCtaLabel || 'tout',
-        ctaHref: f.lastChanceCtaHref || '#',
+        ctaHref: f.lastChanceCtaHref || '/collections/last-chance',
       },
       elevate: {
         title: f.elevateTitle || 'Elevate',
@@ -147,7 +147,7 @@ export async function fetchClothingLandingPage() {
         title: f.essenceTitle || 'Essence collection',
         text: f.essenceText || '',
         ctaLabel: f.essenceCtaLabel || 'acheter',
-        ctaHref: f.essenceCtaHref || '#',
+        ctaHref: f.essenceCtaHref || '/collections/essence-collection',
         backgroundImage: f.essenceBackgroundImage
           ? mapAsset(f.essenceBackgroundImage).src
           : '',

@@ -5,19 +5,19 @@ const slides = [
     desktop: 'https://biotechusa.fr/content/uploads/2014/11/FR_B2C_apr_akcios_banner_1920x720_rotator.jpg',
     mobile: 'https://biotechusa.fr/content/uploads/2014/11/FR_B2C_apr_akcios_banner_752x992_rotator.jpg',
     alt: 'Promotion BioTechUSA',
-    href: '#',
+    href: '/collections/all',
   },
   {
     desktop: 'https://biotechusa.fr/content/uploads/2014/11/mobil_app_kampany_FR_1920-x-720.jpg',
     mobile: 'https://biotechusa.fr/content/uploads/2014/11/mobil_app_kampany_FR_752-x-992.jpg',
     alt: 'Application mobile BioTechUSA',
-    href: '#',
+    href: '/app',
   },
   {
     desktop: 'https://biotechusa.fr/content/uploads/2014/11/FR_Iso_Whey_Clear_1920x720_hero.jpg',
     mobile: 'https://biotechusa.fr/content/uploads/2014/11/FR_Yuzu-100CM-CE_752x992.jpg',
     alt: 'BioTechUSA',
-    href: '#',
+    href: '/collections/proteines',
   },
 ]
 
