@@ -189,6 +189,7 @@ function ProductsTabsSection({ tabs, activeTab, setActiveTab, activeProducts }) 
   const visibleCount = 6
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setCurrentIdx(0)
     if (scrollRef.current) scrollRef.current.scrollLeft = 0
   }, [activeTab])

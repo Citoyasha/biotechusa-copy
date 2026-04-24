@@ -23,6 +23,9 @@ function mapImage(asset, alt) {
 
 function mapEntryToProduct(entry) {
   const f = entry.fields || {}
+  const image = f.imageUrl
+    ? { src: f.imageUrl, alt: f.imageAlt || f.name || '' }
+    : mapImage(f.image, f.imageAlt)
   return {
     id: entry.sys.id,
     contentfulId: entry.sys.id,
@@ -33,7 +36,7 @@ function mapEntryToProduct(entry) {
     price: Number(f.price) || 0,
     originalPrice: f.originalPrice != null ? Number(f.originalPrice) : null,
     unitPrice: f.unitPrice || null,
-    image: mapImage(f.image, f.imageAlt),
+    image,
     category: f.category || 'all',
     inStock: f.inStock ?? true,
     badge: f.badge || null,
@@ -41,7 +44,8 @@ function mapEntryToProduct(entry) {
     reviewCount: Number(f.reviewCount) || 0,
     bgClass: f.bgClass || null,
     shortDescription: f.shortDescription || null,
-    variants: f.variants || null,
+    descriptionHtml: f.descriptionHtml || null,
+    variants: Array.isArray(f.variants) ? f.variants : f.variants || null,
     packaging: f.packaging || null,
     badges: f.badges || null,
     faq: f.faq || null,
@@ -109,8 +113,38 @@ function mapLinkedVariant(ref) {
   }
 }
 
+function urlToImage(url, alt) {
+  if (!url) return null
+  return { src: url, alt: alt || '' }
+}
+
 function mapClothingEntryToProduct(entry) {
   const f = entry.fields || {}
+  const image = f.imageUrl
+    ? urlToImage(f.imageUrl, f.name)
+    : mapImage(f.image, f.name)
+  const hoverImage = f.hoverImageUrl
+    ? urlToImage(f.hoverImageUrl, f.name)
+    : (f.hoverImage ? mapImage(f.hoverImage, f.name) : null)
+  const galleryImages = Array.isArray(f.galleryImageUrls)
+    ? f.galleryImageUrls.map((u) => urlToImage(u, f.name)).filter(Boolean)
+    : Array.isArray(f.galleryImages)
+      ? f.galleryImages.map((img) => mapImage(img, f.name)).filter((x) => x.src)
+      : []
+  const video = f.videoUrl
+    ? { src: f.videoUrl, contentType: 'video/mp4' }
+    : (f.video?.fields?.file?.url
+        ? {
+            src: f.video.fields.file.url.startsWith('//')
+              ? `https:${f.video.fields.file.url}`
+              : f.video.fields.file.url,
+            contentType: f.video.fields.file.contentType || 'video/mp4',
+          }
+        : null)
+  const videoPoster = f.videoPosterUrl
+    ? urlToImage(f.videoPosterUrl, f.name)
+    : (f.videoPoster ? mapImage(f.videoPoster, f.name) : null)
+
   return {
     id: entry.sys.id,
     contentfulId: entry.sys.id,
@@ -120,20 +154,11 @@ function mapClothingEntryToProduct(entry) {
     slug: f.slug,
     price: Number(f.price) || 0,
     originalPrice: f.originalPrice != null ? Number(f.originalPrice) : null,
-    image: mapImage(f.image, f.name),
-    hoverImage: f.hoverImage ? mapImage(f.hoverImage, f.name) : null,
-    galleryImages: Array.isArray(f.galleryImages)
-      ? f.galleryImages.map((img) => mapImage(img, f.name)).filter((x) => x.src)
-      : [],
-    video: f.video?.fields?.file?.url
-      ? {
-          src: f.video.fields.file.url.startsWith('//')
-            ? `https:${f.video.fields.file.url}`
-            : f.video.fields.file.url,
-          contentType: f.video.fields.file.contentType || 'video/mp4',
-        }
-      : null,
-    videoPoster: f.videoPoster ? mapImage(f.videoPoster, f.name) : null,
+    image,
+    hoverImage,
+    galleryImages,
+    video,
+    videoPoster,
     linkedVariants: Array.isArray(f.linkedVariants)
       ? f.linkedVariants.map(mapLinkedVariant).filter(Boolean)
       : [],

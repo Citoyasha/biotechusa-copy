@@ -11,53 +11,18 @@ import ProductDescriptionAccordion from '../components/shop/product/ProductDescr
 import ProductFAQ from '../components/shop/product/ProductFAQ'
 import ClothingProductDetail from './ClothingProductDetail'
 
-const LOREM_SHORT = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-
-const LOREM_LONG = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'
-
-const PLACEHOLDER_DESCRIPTION = {
-  whyOffer: LOREM_LONG,
-  forWhom: LOREM_LONG,
-  biteAnytime: LOREM_LONG,
-  contents: LOREM_LONG,
-  consumption: LOREM_LONG,
-  ingredients: LOREM_LONG,
-}
-
-const PLACEHOLDER_VARIANTS = [
-  { id: 'v1', label: 'Lorem chocolat', available: true },
-  { id: 'v2', label: 'Lorem vanille', available: true },
-  { id: 'v3', label: 'Lorem fraise', available: false },
-]
-
-const PLACEHOLDER_BADGES = [
-  { icon: 'aspartame', label: 'Sans aspartame' },
-  { icon: 'gluten', label: 'Sans gluten' },
-  { icon: 'ogm', label: 'Sans ogm' },
-  { icon: 'sugar', label: 'Faible teneur en sucre' },
-]
-
-const PLACEHOLDER_FAQ = [
-  { question: 'Lorem ipsum dolor sit amet consectetur ?', answer: LOREM_SHORT },
-  { question: 'Sed do eiusmod tempor incididunt ?', answer: LOREM_SHORT },
-  { question: 'Ut enim ad minim veniam quis nostrud ?', answer: LOREM_SHORT },
-  { question: 'Duis aute irure dolor in reprehenderit ?', answer: LOREM_SHORT },
-]
-
 /**
  * Apply lorem ipsum fallbacks for any missing fields.
  * Allows ANY product slug to render the template.
  * PHASE 2: Contentful entries will populate these fields, fallbacks become rare.
  */
 function withDefaults(product) {
+  // Real Contentful data only. No lorem placeholders for shop products
+  // (supplement entries now carry descriptionHtml + variants from biotechusa import).
   return {
     ...product,
-    shortDescription: product.shortDescription ?? LOREM_SHORT,
-    description: { ...PLACEHOLDER_DESCRIPTION, ...(product.description || {}) },
-    variants: product.variants ?? PLACEHOLDER_VARIANTS,
-    badges: product.badges ?? PLACEHOLDER_BADGES,
+    description: product.description || {},
     packaging: product.packaging ?? null,
-    faq: product.faq ?? PLACEHOLDER_FAQ,
   }
 }
 

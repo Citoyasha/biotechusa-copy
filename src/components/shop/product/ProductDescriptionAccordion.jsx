@@ -1,13 +1,19 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 
-const SECTIONS = [
-  { key: 'whyOffer', title: 'Pour quelles raisons offrons-nous le produit X?' },
-  { key: 'forWhom', title: 'A qui offrons-nous le produit X?' },
-  { key: 'biteAnytime', title: "Mords ça n'importe quand!" },
-  { key: 'contents', title: 'Que contient une barre de X?' },
-  { key: 'consumption', title: 'Quel mode de consommation suggérons-nous?' },
-  { key: 'ingredients', title: 'Ingrédients' },
-]
+const SHOP_DESC_CSS = `
+.shop-desc { color: #36474e; font-size: 14px; line-height: 1.6; }
+.shop-desc h1, .shop-desc h3, .shop-desc h4 { font-family: 'Roboto', sans-serif; font-weight: 700; color: #36474e; margin: 16px 0 8px; }
+.shop-desc h3 { font-size: 16px; }
+.shop-desc p { margin: 0 0 10px; }
+.shop-desc ul, .shop-desc ol { padding-left: 20px; margin: 8px 0; }
+.shop-desc li { margin: 4px 0; }
+.shop-desc table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 13px; }
+.shop-desc th, .shop-desc td { border: 1px solid #eff1f1; padding: 8px; text-align: left; }
+.shop-desc th { background: #f9f9f9; font-weight: 700; color: #36474e; }
+.shop-desc a { color: #1babf9; text-decoration: underline; }
+.shop-desc img { max-width: 100%; height: auto; }
+.shop-desc .accordion--closed { display: block; }
+`
 
 function PlusIcon({ open }) {
   return (
@@ -21,48 +27,57 @@ function PlusIcon({ open }) {
   )
 }
 
-function ProductDescriptionAccordion({ product }) {
-  // Multiple sections can stay open independently
-  const [openKeys, setOpenKeys] = useState(() => new Set(['whyOffer']))
-  const productName = product.name?.split(' ').slice(0, 2).join(' ') || 'X'
-
-  const toggle = (key) => {
-    setOpenKeys((prev) => {
-      const next = new Set(prev)
-      if (next.has(key)) next.delete(key)
-      else next.add(key)
-      return next
-    })
+function parseHtmlIntoSections(html) {
+  if (typeof window === 'undefined' || !html) return []
+  const doc = new DOMParser().parseFromString(html, 'text/html')
+  const h2s = Array.from(doc.querySelectorAll('h2'))
+  if (!h2s.length) return [{ title: 'Description du produit', content: html }]
+  const sections = []
+  for (const h2 of h2s) {
+    const title = (h2.textContent || '').trim()
+    if (!title) continue
+    let content = ''
+    let el = h2.nextElementSibling
+    while (el && el.tagName !== 'H2') {
+      content += el.outerHTML
+      el = el.nextElementSibling
+    }
+    sections.push({ title, content })
   }
+  return sections
+}
+
+function ProductDescriptionAccordion({ product }) {
+  const sections = useMemo(
+    () => parseHtmlIntoSections(product.descriptionHtml),
+    [product.descriptionHtml],
+  )
+  const [openIdx, setOpenIdx] = useState(0)
+
+  if (!sections.length) return null
 
   return (
     <div className="mt-8 border-t border-[#eff1f1]">
-      {SECTIONS.map((section) => {
-        const isOpen = openKeys.has(section.key)
-        const content = product.description?.[section.key] || ''
-        const title = section.title.replace('X', productName)
-
+      <style>{SHOP_DESC_CSS}</style>
+      {sections.map((section, idx) => {
+        const isOpen = openIdx === idx
         return (
-          <div key={section.key} className="border-b border-[#eff1f1]">
+          <div key={idx} className="border-b border-[#eff1f1]">
             <button
-              onClick={() => toggle(section.key)}
+              onClick={() => setOpenIdx(isOpen ? -1 : idx)}
               className="w-full flex items-center justify-between py-5 text-left hover:bg-[#f9f9f9] px-2 transition-colors"
               aria-expanded={isOpen}
             >
               <h2 className="text-base lg:text-lg font-bold text-[#36474e] not-italic mb-0" style={{ fontFamily: "'Roboto', sans-serif", textTransform: 'none', letterSpacing: 0 }}>
-                {title}
+                {section.title}
               </h2>
               <PlusIcon open={isOpen} />
             </button>
             {isOpen && (
-              <div className="px-2 pb-5 text-[#6b7a8d] leading-relaxed text-sm whitespace-pre-line">
-                {content || (
-                  <em className="text-[#9aa5b1]">
-                    [Lorem ipsum — placeholder content for {section.title.toLowerCase()}.
-                    Replace via Contentful CMS in PHASE 2.]
-                  </em>
-                )}
-              </div>
+              <div
+                className="shop-desc px-2 pb-5"
+                dangerouslySetInnerHTML={{ __html: section.content }}
+              />
             )}
           </div>
         )

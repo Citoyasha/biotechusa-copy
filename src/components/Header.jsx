@@ -7,9 +7,9 @@ import {
 } from '../data/fetchNavigation'
 
 const topLinks = [
-  { label: 'Blog', href: '/blog' },
+  { label: 'Blog', href: 'https://biotechusa.fr/blog/' },
   //{ label: 'Programme Fidelité', href: '/programme-fidelite' },
-  { label: 'À propos de nous', href: '/a-propos' },
+  { label: 'À propos de nous', href: 'https://biotechusa.fr/a-propos-de-nous/' },
   //{ label: 'Carrière', href: '/carriere' },
   //{ label: 'Ambassador program', href: '/ambassador' },
   { label: 'Contact', href: '/contact' },

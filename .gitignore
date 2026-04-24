@@ -17,6 +17,10 @@ dist-ssr
 .env.local
 .env.*.local
 
+# Import scripts + scraped data (local-only)
+/scripts
+/contentful
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

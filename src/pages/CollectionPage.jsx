@@ -4,6 +4,14 @@ import { fetchClothingProducts, fetchProducts } from '../data/fetchProducts'
 import { fetchCollectionConfig } from '../data/fetchNavigation'
 import ShopCollections from './ShopCollections'
 import ClothingCollectionLayout from './ClothingCollectionLayout'
+import ComingSoon from './ComingSoon'
+
+const COMING_SOON_SLUGS = {
+  'calculateur-vitamines': {
+    title: 'Calculateur de vitamines',
+    description: 'Un outil personnalisé qui vous recommandera les produits adaptés à vos objectifs et à votre profil corporel. Disponible prochainement.',
+  },
+}
 
 const emptyFetch = () => Promise.resolve([])
 
@@ -17,13 +25,14 @@ function slugToTitle(slug) {
 export default function CollectionPage() {
   const { collectionSlug } = useParams()
   const [config, setConfig] = useState(undefined)
+  const comingSoon = COMING_SOON_SLUGS[collectionSlug]
 
   useEffect(() => {
+    if (comingSoon) return
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setConfig(undefined)
     fetchCollectionConfig(collectionSlug).then((c) => setConfig(c || null))
-  }, [collectionSlug])
-
-  const isClothing = config?.filterType === 'collection' || config?.filterType === 'category'
+  }, [collectionSlug, comingSoon])
 
   const fetchFn = useCallback(() => {
     if (!config) return emptyFetch()
@@ -39,6 +48,17 @@ export default function CollectionPage() {
     return emptyFetch()
   }, [config])
 
+  if (comingSoon) {
+    return (
+      <ComingSoon
+        title={comingSoon.title}
+        description={comingSoon.description}
+        breadcrumbHref={`/collections/${collectionSlug}`}
+      />
+    )
+  }
+
+  const isClothing = config?.filterType === 'collection' || config?.filterType === 'category'
   const title = config?.title || slugToTitle(collectionSlug)
 
   // Clothing collections get the clothing layout

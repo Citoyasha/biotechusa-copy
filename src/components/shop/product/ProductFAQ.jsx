@@ -12,9 +12,37 @@ function PlusIcon({ open }) {
   )
 }
 
+const GENERIC_FAQ = [
+  {
+    question: 'Comment consommer ce produit ?',
+    answer:
+      "Respectez la dose journalière recommandée indiquée sur l'emballage. Un complément alimentaire ne remplace pas une alimentation variée et équilibrée ni un mode de vie sain.",
+  },
+  {
+    question: 'Ce produit convient-il aux végétariens ou aux végétaliens ?',
+    answer:
+      "La compatibilité varie selon la formule. Consultez la liste des ingrédients sur l'emballage ou contactez notre service client pour confirmation.",
+  },
+  {
+    question: 'Les compléments BioTechUSA contiennent-ils du gluten, du lactose ou des OGM ?',
+    answer:
+      "La majorité de nos produits sont sans gluten, à faible teneur en lactose et sans OGM. Les pictogrammes sur la fiche produit précisent les allergènes absents.",
+  },
+  {
+    question: 'Quel est le délai de livraison ?',
+    answer:
+      "Les commandes sont traitées sous 24 à 48 heures ouvrées. La livraison standard est généralement effectuée sous 3 à 5 jours ouvrés en France métropolitaine.",
+  },
+  {
+    question: 'Puis-je retourner un produit ?',
+    answer:
+      "Vous disposez de 14 jours à compter de la réception pour retourner un produit non ouvert. Contactez notre service client pour initier la procédure.",
+  },
+]
+
 function ProductFAQ({ product }) {
   const [openIdx, setOpenIdx] = useState(null)
-  const faq = product.faq || []
+  const faq = (product.faq && product.faq.length > 0) ? product.faq : GENERIC_FAQ
 
   if (faq.length === 0) return null
 

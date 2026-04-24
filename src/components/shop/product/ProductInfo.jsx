@@ -3,8 +3,16 @@ import { Link } from 'react-router-dom'
 import StarRating from '../StarRating'
 import BadgeIcon from './BadgeIcon'
 
+const DEFAULT_BADGES = [
+  { icon: 'aspartame', label: 'Sans aspartame' },
+  { icon: 'gluten', label: 'Sans gluten' },
+  { icon: 'ogm', label: 'Sans ogm' },
+  { icon: 'sugar', label: 'Faible teneur en sucre' },
+]
+
 function ProductInfo({ product }) {
   const [variantId, setVariantId] = useState(product.variants?.[0]?.id || '')
+  const badges = (product.badges && product.badges.length > 0) ? product.badges : DEFAULT_BADGES
 
   const formatPrice = (n) => `€${n.toFixed(2).replace('.', ',')}`
 
@@ -29,18 +37,16 @@ function ProductInfo({ product }) {
       </p>
 
       {/* Badges row */}
-      {product.badges && product.badges.length > 0 && (
-        <div className="grid grid-cols-3 gap-3 py-2">
-          {product.badges.map((badge) => (
-            <div key={badge.label} className="flex flex-col items-center gap-1.5">
-              <BadgeIcon icon={badge.icon} className="w-10 h-10" />
-              <span className="text-[11px] text-[#36474e] text-center leading-tight">
-                {badge.label}
-              </span>
-            </div>
-          ))}
-        </div>
-      )}
+      <div className="grid grid-cols-3 gap-3 py-2">
+        {badges.map((badge) => (
+          <div key={badge.label} className="flex flex-col items-center gap-1.5">
+            <BadgeIcon icon={badge.icon} className="w-10 h-10" />
+            <span className="text-[11px] text-[#36474e] text-center leading-tight">
+              {badge.label}
+            </span>
+          </div>
+        ))}
+      </div>
 
       {/* Packaging selector */}
       {product.packaging && product.packaging.length > 0 && (
